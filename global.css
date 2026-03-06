@@ -1,14 +1,10 @@
-/* ============================================================
-   GLOBAL.CSS — TestHub Unified Brutalist Stylesheet
-   ============================================================ */
+
 
 /* ── OPEN PROPS (FAQ animations) ── */
 @import "https://unpkg.com/open-props/open-props.min.css";
 @import "https://unpkg.com/open-props/animations.min.css";
 
-/* ============================================================
-   1. CSS CUSTOM PROPERTIES
-   ============================================================ */
+/* Custom eduud */
 :root {
     --bg: #f2eee3;
     --surf: #ffffff;
@@ -22,9 +18,7 @@
     --trans: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* ============================================================
-   2. BASE RESET
-   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -48,9 +42,6 @@ ul {
     list-style: none;
 }
 
-/* ============================================================
-   3. LAYOUT UTILITIES
-   ============================================================ */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -79,9 +70,6 @@ ul {
     text-align: center;
 }
 
-/* ============================================================
-   4. BRUTALIST CARD UTILITY
-   ============================================================ */
 .brutal {
     background: var(--surf);
     border: var(--border-val);
@@ -95,9 +83,6 @@ ul {
     box-shadow: 8px 8px 0px 0px #1a1a1a;
 }
 
-/* ============================================================
-   5. NAVIGATION
-   ============================================================ */
 .navbar {
     background: var(--surf);
     padding: 10px 20px;
@@ -156,7 +141,6 @@ ul {
     border: 2px solid #1a1a1a;
 }
 
-/* Dropdown */
 .has-drop {
     position: relative;
 }
@@ -193,7 +177,6 @@ ul {
     color: white;
 }
 
-/* User avatar in nav */
 .user-profile {
     display: flex;
     align-items: center;
@@ -211,9 +194,6 @@ ul {
     font-size: 1.2rem;
 }
 
-/* ============================================================
-   6. PAGE HERO / BANNER
-   ============================================================ */
 .hero-area {
     padding: 40px 0;
 }
@@ -243,7 +223,7 @@ ul {
     margin: 0 auto;
 }
 
-/* Hero area centered (for index / help style) */
+
 .hero-area-center {
     padding: 40px 0;
     text-align: center;
@@ -265,9 +245,6 @@ ul {
     margin-bottom: 40px;
 }
 
-/* ============================================================
-   7. STATS ROW
-   ============================================================ */
 .stats-row {
     margin-top: 50px;
 }
@@ -293,9 +270,7 @@ ul {
     font-weight: 700;
 }
 
-/* ============================================================
-   8. SECTIONS & CARDS
-   ============================================================ */
+
 .section {
     padding: 40px 0;
 }
@@ -357,9 +332,7 @@ ul {
     margin-bottom: 20px;
 }
 
-/* ============================================================
-   9. BADGES
-   ============================================================ */
+
 .badge {
     padding: 5px 15px;
     border-radius: 10px;
@@ -387,9 +360,7 @@ ul {
     background: var(--blue);
 }
 
-/* ============================================================
-   10. BUTTONS
-   ============================================================ */
+
 .btn-brutal {
     display: block;
     width: 100%;
@@ -425,16 +396,13 @@ ul {
     color: var(--txt);
 }
 
-/* Inline button variant (not full-width) */
 .btn-inline {
     display: inline-block;
     width: auto;
     padding: 12px 30px;
 }
 
-/* ============================================================
-   11. RANKING CTA
-   ============================================================ */
+
 .ranking-cta {
     padding: 60px;
     text-align: center;
@@ -456,9 +424,7 @@ ul {
     margin-top: 25px;
 }
 
-/* ============================================================
-   12. HOME PAGE — HERO (index.xhtml)
-   ============================================================ */
+/* Index.xhtml */
 .home-hero {
     padding: 60px 0;
 }
@@ -532,7 +498,6 @@ ul {
     box-shadow: 6px 6px 0 #1a1a1a;
 }
 
-/* Social proof */
 .social-proof {
     display: flex;
     align-items: center;
@@ -594,7 +559,6 @@ ul {
     font-size: 1rem;
 }
 
-/* Hero right: mockup panel */
 .home-hero-mockup {
     flex: 1;
     max-width: 380px;
@@ -671,9 +635,24 @@ ul {
     height: 40px;
 }
 
-/* ============================================================
-   13. HOME PAGE — FEATURE CARDS
-   ============================================================ */
+.chart-css {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.chart-bar {
+    position: absolute;
+    bottom: 0;
+    width: 8px;
+    background-color: var(--green);
+    border-radius: 2px;
+}
+
+/* Features */
 .features-section {
     padding: 50px 0;
     border-top: var(--border-val);
@@ -703,9 +682,7 @@ ul {
     line-height: 1.5;
 }
 
-/* ============================================================
-   14. HOME PAGE — STATS STRIP
-   ============================================================ */
+/* Home */
 .stats-strip {
     padding: 40px 0;
 }
@@ -726,9 +703,7 @@ ul {
     font-size: 0.9rem;
 }
 
-/* ============================================================
-   15. HOME PAGE — ABOUT + TESTIMONIALS + CTA
-   ============================================================ */
+/* Home page deerh testinomial */
 .about-section {
     padding: 50px 0;
     text-align: center;
@@ -791,6 +766,97 @@ ul {
     justify-content: center;
     font-size: 1.4rem;
     flex-shrink: 0;
+}
+
+/* ============================================================
+   HOME PAGE — TEAM SECTION
+   ============================================================ */
+.team-section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.team-section h2 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.team-section p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.team-card {
+    padding: 20px;
+    text-align: center;
+}
+
+.team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-name {
+    font-weight: 900;
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.team-role {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* ============================================================
+   HOME PAGE — READY CTA
+   ============================================================ */
+.ready-cta {
+    padding: 60px 20px;
+    text-align: center;
+    background: var(--green);
+    color: white;
+    border-radius: 20px;
+    margin: 40px 0;
+}
+
+.ready-cta h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.ready-cta p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.ready-cta a {
+    display: inline-block;
+    background: white;
+    color: var(--green);
+    padding: 12px 30px;
+    border-radius: 20px;
+    font-weight: 900;
+    border: var(--border-val);
+    box-shadow: 4px 4px 0 #1a1a1a;
+    transition: var(--trans);
+}
+
+.ready-cta a:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #1a1a1a;
 }
 
 .t-c1 {
@@ -859,9 +925,7 @@ ul {
     margin-bottom: 24px;
 }
 
-/* ============================================================
-   16. TESTS PAGE (test.xhtml)
-   ============================================================ */
+/* Test */
 .page-header {
     text-align: center;
     padding: 40px 0 30px;
@@ -885,7 +949,7 @@ ul {
     align-items: flex-start;
 }
 
-/* Filters sidebar */
+/* sidebar */
 .filters-sidebar {
     width: 200px;
     flex-shrink: 0;
@@ -934,7 +998,7 @@ ul {
     color: white;
 }
 
-/* Test cards grid */
+/* Test cards */
 .tests-grid {
     flex: 1;
     display: grid;
@@ -1041,7 +1105,7 @@ ul {
     margin-bottom: 16px;
 }
 
-/* Search bar (tests page) */
+
 .search-wrap {
     margin-bottom: 30px;
 }
@@ -1067,9 +1131,7 @@ ul {
     box-shadow: 5px 5px 0 #1a1a1a;
 }
 
-/* ============================================================
-   17. EXAMS PAGE (tests.xhtml)
-   ============================================================ */
+/* Exam page */
 .exams-layout {
     display: flex;
     gap: 0;
@@ -1175,9 +1237,7 @@ ul {
     margin-bottom: 16px;
 }
 
-/* ============================================================
-   18. HELP PAGE SPECIFIC
-   ============================================================ */
+/* Help page */
 .help-steps {
     margin-top: 16px;
     text-align: left;
@@ -1205,7 +1265,7 @@ ul {
     flex-shrink: 0;
 }
 
-/* FAQ */
+/* Fuck u */
 .faq-container {
     max-width: 800px;
     margin: 0 auto;
@@ -1259,7 +1319,7 @@ details[open] .faq-content p {
     animation: var(--animation-fade-in, none) 1s ease forwards;
 }
 
-/* Support banner */
+
 .support-banner {
     text-align: center;
     margin: 40px 0;
@@ -1276,9 +1336,7 @@ details[open] .faq-content p {
     margin-bottom: 20px;
 }
 
-/* ============================================================
-   19. FOOTER
-   ============================================================ */
+/* Footer */
 .footer {
     border-top: var(--border-val);
     padding: 60px 0 20px;
@@ -1331,9 +1389,165 @@ details[open] .faq-content p {
     color: #999;
 }
 
-/* ============================================================
-   20. RESPONSIVE
-   ============================================================ */
+/* Gradient Footer */
+.footer-gradient {
+    background: linear-gradient(135deg, #5eb562 0%, #4a9450 100%);
+    color: white;
+    padding: 60px 0 30px;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-col {
+    padding: 0;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.footer-logo-icon {
+    background: white;
+    color: var(--green);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.footer-logo-text {
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: white;
+}
+
+.footer-tagline {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+}
+
+.footer-col h4 {
+    font-size: 1rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    color: white;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--trans);
+}
+
+.footer-col a:hover {
+    color: white;
+}
+
+.footer-contact p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.footer-contact a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: var(--trans);
+}
+
+.footer-contact a:hover {
+    color: white;
+}
+
+.footer-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+.footer-bottom {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+/* Utsan deer haragdah menu */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--txt);
+    border-radius: 2px;
+    transition: var(--trans);
+}
+
+#menu-checkbox {
+    display: none;
+}
+
+#menu-checkbox:checked ~ .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background: var(--surf);
+    border-bottom: var(--border-val);
+    gap: 0;
+    padding: 20px;
+}
+
+#menu-checkbox:checked ~ .menu-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+#menu-checkbox:checked ~ .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-checkbox:checked ~ .menu-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive */
 @media (max-width: 900px) {
     .grid-3 {
         grid-template-columns: 1fr;
@@ -1343,8 +1557,54 @@ details[open] .faq-content p {
         grid-template-columns: 1fr 1fr;
     }
 
+    .menu-toggle {
+        display: flex;
+    }
+
     .nav-menu {
         display: none;
+        gap: 0;
+    }
+
+    .nav-menu li {
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu a {
+        display: block;
+        padding: 8px 0;
+    }
+
+    .drop-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        border: none;
+        box-shadow: none;
+        background: #f8f8f8;
+        margin-left: 15px;
+        margin-top: 8px;
+        border-radius: 0;
+    }
+
+    .has-drop:hover .drop-menu {
+        background: #f8f8f8;
+    }
+
+    .drop-menu li {
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .drop-menu a {
+        padding: 8px 0;
+        display: block;
     }
 
     .home-hero-inner {
@@ -1353,6 +1613,19 @@ details[open] .faq-content p {
 
     .home-hero-mockup {
         max-width: 100%;
+        width: 100%;
+    }
+
+    .home-hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .home-hero-buttons {
+        flex-direction: column;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-outline {
         width: 100%;
     }
 
@@ -1376,6 +1649,7 @@ details[open] .faq-content p {
         width: 100%;
         border-right: none;
         border-bottom: var(--border-val);
+        padding: 20px;
     }
 
     .exam-grid {
@@ -1384,5 +1658,76 @@ details[open] .faq-content p {
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .banner h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .cta-box {
+        padding: 30px 20px;
+    }
+}
+
+/* page fade transition */
+body {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-hero-primary,
+    .btn-hero-outline {
+        width: 100%;
+    }
+
+    .home-hero-text h1 {
+        font-size: 1.5rem;
+    }
+
+    .banner h1 {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .social-proof {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .container {
+        padding: 0 15px;
     }
 }
