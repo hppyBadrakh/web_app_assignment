@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="mn" lang="mn">
 
 <head>
-    <title>TestHub - Тэмцээнүүд</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TestHub - Тэмцээнүүд</title>
     <link rel="stylesheet" type="text/css" href="global.css" />
 </head>
 
@@ -16,12 +18,12 @@
                 <div class="logo-icon">T</div>
                 <span class="logo-text">TestHub</span>
             </div>
-            
+
             <input type="checkbox" id="menu-checkbox" />
             <label for="menu-checkbox" class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span>&#160;</span>
+                <span>&#160;</span>
+                <span>&#160;</span>
             </label>
             <ul class="nav-menu">
                 <li><a href="index.xhtml">Нүүр</a></li>
@@ -29,13 +31,12 @@
                 <li class="has-drop">
                     <a href="competition.xhtml" class="btn-active">Тэмцээн &#9662;</a>
                     <ul class="drop-menu">
-                        <li><a href="competition.xhtml">Ирэх тэмцээнүүд</a></li>
-                        <li><a href="competition.xhtml">Өнгөрсөн тэмцээнүүд</a></li>
-                        <li><a href="competition.xhtml">Бүх цагийн зэрэглэл</a></li>
+                        <li><a href="competition.xhtml#upcoming">Ирэх тэмцээнүүд</a></li>
+                        <li><a href="competition.xhtml#past">Өнгөрсөн тэмцээнүүд</a></li>
+                        <li><a href="competition.xhtml#ranking">Бүх цагийн зэрэглэл</a></li>
                     </ul>
                 </li>
                 <li><a href="help.xhtml">Тусламж</a></li>
-                
                 <li class="user-profile">
                     <div class="avatar">&#128100;</div>
                 </li>
@@ -71,76 +72,23 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section" id="upcoming">
             <div class="section-head flex-row">
                 <h2>Ирэх тэмцээнүүд</h2>
                 <a href="#" class="link-view">Бүгдийг харах &#8250;</a>
             </div>
-            <div class="grid-3">
-                <div class="item-card brutal">
-                    <div class="card-top">
-                        <span>&#127942;</span>
-                        <span class="badge yellow">4-р сарын 15</span>
-                    </div>
-                    <h3>2026 оны Хаврын Математикийн аварга шалгаруулах тэмцээн</h3>
-                    <p class="meta">1,247 оролцогч</p>
-                    <p class="prize">Шагнал: $500 + Гэрчилгээ</p>
-                    <a href="#" class="btn-brutal green-btn">Оролцох</a>
-                </div>
-
-                <div class="item-card brutal">
-                    <div class="card-top">
-                        <span>&#127942;</span>
-                        <span class="badge yellow">4-р сарын 22</span>
-                    </div>
-                    <h3>Англи хэлний шилдэгүүдийн уралдаан</h3>
-                    <p class="meta">892 оролцогч</p>
-                    <p class="prize">Шагнал: $300 + Гэрчилгээ</p>
-                    <a href="#" class="btn-brutal green-btn">Оролцох</a>
-                </div>
-
-                <div class="item-card brutal">
-                    <div class="card-top">
-                        <span>&#127942;</span>
-                        <span class="badge yellow">3-р сарын 30</span>
-                    </div>
-                    <h3>Түргэн Математикийн Шалгалт</h3>
-                    <p class="meta">1,523 оролцогч</p>
-                    <p class="prize">Шагнал: Гэрчилгээ</p>
-                    <a href="#" class="btn-brutal green-btn">Оролцох</a>
-                </div>
-            </div>
+            <div id="upcoming-grid" class="grid-3">&#160;</div>
         </div>
 
-        <div class="section">
+        <div class="section" id="past">
             <div class="section-head flex-row">
                 <h2>Өнгөрсөн тэмцээнүүд</h2>
                 <a href="#" class="link-view">Бүгдийг харах &#8250;</a>
             </div>
-            <div class="grid-3">
-                <div class="item-card brutal">
-                    <div class="card-top muted">
-                        <span>&#127942;</span>
-                        <span class="badge gray">2025 оны 12-р сарын 10</span>
-                    </div>
-                    <h3>2025 оны Өвлийн Математикийн Челленж</h3>
-                    <p class="meta">2,156 оролцогч</p>
-                    <a href="#" class="btn-brutal white-btn">Үр дүнг харах</a>
-                </div>
-
-                <div class="item-card brutal">
-                    <div class="card-top muted">
-                        <span>&#127942;</span>
-                        <span class="badge gray">2025 оны 11-р сарын 5</span>
-                    </div>
-                    <h3>2025 оны Граммасын Мастер</h3>
-                    <p class="meta">1,834 оролцогч</p>
-                    <a href="#" class="btn-brutal white-btn">Үр дүнг харах</a>
-                </div>
-            </div>
+            <div id="past-grid" class="grid-3">&#160;</div>
         </div>
 
-        <div class="ranking-cta brutal">
+        <div class="ranking-cta brutal" id="ranking">
             <div class="rank-icon">&#127941;</div>
             <h2>Бүх цагийн зэрэглэл</h2>
             <p>Бүх тэмцээнээр шилдэг гүйцэтгэлтэй хүмүүсийг хараарай</p>
@@ -179,9 +127,131 @@
             </div>
             <p class="footer-copy">&#169; 2026 TestHub. Бүх эрх хуулиар хамгаалагдсан.</p>
         </div>
-
     </div>
 
-</body>
+    <script type="text/javascript">
+    //<![CDATA[
+        (function () {
+            var upcoming = [
+                {
+                    date: '4-р сарын 15',
+                    title: '2026 оны Хаврын Математикийн аварга шалгаруулах тэмцээн',
+                    meta: '1,247 оролцогч',
+                    prize: '$500 + Гэрчилгээ',
+                    actionText: 'Оролцох',
+                    actionClass: 'green-btn'
+                },
+                {
+                    date: '4-р сарын 22',
+                    title: 'Англи хэлний шилдэгүүдийн уралдаан',
+                    meta: '892 оролцогч',
+                    prize: '$300 + Гэрчилгээ',
+                    actionText: 'Оролцох',
+                    actionClass: 'green-btn'
+                },
+                {
+                    date: '3-р сарын 30',
+                    title: 'Түргэн Математикийн Шалгалт',
+                    meta: '1,523 оролцогч',
+                    prize: 'Гэрчилгээ',
+                    actionText: 'Оролцох',
+                    actionClass: 'green-btn'
+                }
+            ];
 
+            var past = [
+                {
+                    date: '2025 оны 12-р сарын 10',
+                    title: '2025 оны Өвлийн Математикийн Челленж',
+                    meta: '2,156 оролцогч',
+                    actionText: 'Үр дүнг харах',
+                    actionClass: 'white-btn',
+                    muted: true
+                },
+                {
+                    date: '2025 оны 11-р сарын 5',
+                    title: '2025 оны Граммасын Мастер',
+                    meta: '1,834 оролцогч',
+                    actionText: 'Үр дүнг харах',
+                    actionClass: 'white-btn',
+                    muted: true
+                }
+            ];
+
+            function createCard(item) {
+                var card = document.createElement('div');
+                card.className = 'item-card brutal';
+
+                var top = document.createElement('div');
+                top.className = item.muted ? 'card-top muted' : 'card-top';
+
+                var trophy = document.createElement('span');
+                trophy.appendChild(document.createTextNode('\ud83c\udfc6'));
+
+                var badge = document.createElement('span');
+                badge.className = 'badge ' + (item.muted ? 'gray' : 'yellow');
+                badge.appendChild(document.createTextNode(item.date));
+
+                top.appendChild(trophy);
+                top.appendChild(badge);
+                card.appendChild(top);
+
+                var title = document.createElement('h3');
+                title.appendChild(document.createTextNode(item.title));
+                card.appendChild(title);
+
+                var meta = document.createElement('p');
+                meta.className = 'meta';
+                meta.appendChild(document.createTextNode(item.meta));
+                card.appendChild(meta);
+
+                if (item.prize) {
+                    var prize = document.createElement('p');
+                    prize.className = 'prize';
+                    prize.appendChild(document.createTextNode('Шагнал: ' + item.prize));
+                    card.appendChild(prize);
+                }
+
+                var btn = document.createElement('a');
+                btn.setAttribute('href', '#');
+                btn.className = 'btn-brutal ' + item.actionClass;
+                btn.appendChild(document.createTextNode(item.actionText));
+                card.appendChild(btn);
+
+                return card;
+            }
+
+            function renderCards(list, containerId) {
+                var container = document.getElementById(containerId);
+                if (!container) {
+                    return;
+                }
+
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+
+                for (var i = 0; i < list.length; i++) {
+                    container.appendChild(createCard(list[i]));
+                }
+            }
+
+            var initialized = false;
+            function initCards() {
+                if (initialized) { return; }
+                initialized = true;
+                renderCards(upcoming, 'upcoming-grid');
+                renderCards(past, 'past-grid');
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initCards);
+            } else {
+                initCards();
+            }
+        })();
+    //]]>
+    </script>
+
+</body>
 </html>
