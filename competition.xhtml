@@ -45,6 +45,7 @@
     </div>
 
     <div class="container">
+
         <div class="hero-area">
             <div class="banner brutal">
                 <div class="banner-icon">&#127942;</div>
@@ -72,10 +73,23 @@
             </div>
         </div>
 
+        <!--
+            URL parameter filtering examples:
+            competition.xhtml?status=upcoming        — show only upcoming
+            competition.xhtml?status=past            — show only past
+            competition.xhtml?search=математик       — filter by title keyword
+            competition.xhtml?status=upcoming&search=англи
+        -->
+        <div class="search-row">
+            <input id="competition-search" class="search-input" type="search"
+                placeholder="Тэмцээний нэрээр хайх..."
+                aria-label="Search competitions" />
+        </div>
+
         <div class="section" id="upcoming">
             <div class="section-head flex-row">
                 <h2>Ирэх тэмцээнүүд</h2>
-                <a href="#" class="link-view">Бүгдийг харах &#8250;</a>
+                <a href="competition.xhtml?status=upcoming" class="link-view">Бүгдийг харах &#8250;</a>
             </div>
             <div id="upcoming-grid" class="grid-3">&#160;</div>
         </div>
@@ -83,7 +97,7 @@
         <div class="section" id="past">
             <div class="section-head flex-row">
                 <h2>Өнгөрсөн тэмцээнүүд</h2>
-                <a href="#" class="link-view">Бүгдийг харах &#8250;</a>
+                <a href="competition.xhtml?status=past" class="link-view">Бүгдийг харах &#8250;</a>
             </div>
             <div id="past-grid" class="grid-3">&#160;</div>
         </div>
@@ -127,131 +141,10 @@
             </div>
             <p class="footer-copy">&#169; 2026 TestHub. Бүх эрх хуулиар хамгаалагдсан.</p>
         </div>
+
     </div>
 
-    <script type="text/javascript">
-    //<![CDATA[
-        (function () {
-            var upcoming = [
-                {
-                    date: '4-р сарын 15',
-                    title: '2026 оны Хаврын Математикийн аварга шалгаруулах тэмцээн',
-                    meta: '1,247 оролцогч',
-                    prize: '$500 + Гэрчилгээ',
-                    actionText: 'Оролцох',
-                    actionClass: 'green-btn'
-                },
-                {
-                    date: '4-р сарын 22',
-                    title: 'Англи хэлний шилдэгүүдийн уралдаан',
-                    meta: '892 оролцогч',
-                    prize: '$300 + Гэрчилгээ',
-                    actionText: 'Оролцох',
-                    actionClass: 'green-btn'
-                },
-                {
-                    date: '3-р сарын 30',
-                    title: 'Түргэн Математикийн Шалгалт',
-                    meta: '1,523 оролцогч',
-                    prize: 'Гэрчилгээ',
-                    actionText: 'Оролцох',
-                    actionClass: 'green-btn'
-                }
-            ];
-
-            var past = [
-                {
-                    date: '2025 оны 12-р сарын 10',
-                    title: '2025 оны Өвлийн Математикийн Челленж',
-                    meta: '2,156 оролцогч',
-                    actionText: 'Үр дүнг харах',
-                    actionClass: 'white-btn',
-                    muted: true
-                },
-                {
-                    date: '2025 оны 11-р сарын 5',
-                    title: '2025 оны Граммасын Мастер',
-                    meta: '1,834 оролцогч',
-                    actionText: 'Үр дүнг харах',
-                    actionClass: 'white-btn',
-                    muted: true
-                }
-            ];
-
-            function createCard(item) {
-                var card = document.createElement('div');
-                card.className = 'item-card brutal';
-
-                var top = document.createElement('div');
-                top.className = item.muted ? 'card-top muted' : 'card-top';
-
-                var trophy = document.createElement('span');
-                trophy.appendChild(document.createTextNode('\ud83c\udfc6'));
-
-                var badge = document.createElement('span');
-                badge.className = 'badge ' + (item.muted ? 'gray' : 'yellow');
-                badge.appendChild(document.createTextNode(item.date));
-
-                top.appendChild(trophy);
-                top.appendChild(badge);
-                card.appendChild(top);
-
-                var title = document.createElement('h3');
-                title.appendChild(document.createTextNode(item.title));
-                card.appendChild(title);
-
-                var meta = document.createElement('p');
-                meta.className = 'meta';
-                meta.appendChild(document.createTextNode(item.meta));
-                card.appendChild(meta);
-
-                if (item.prize) {
-                    var prize = document.createElement('p');
-                    prize.className = 'prize';
-                    prize.appendChild(document.createTextNode('Шагнал: ' + item.prize));
-                    card.appendChild(prize);
-                }
-
-                var btn = document.createElement('a');
-                btn.setAttribute('href', '#');
-                btn.className = 'btn-brutal ' + item.actionClass;
-                btn.appendChild(document.createTextNode(item.actionText));
-                card.appendChild(btn);
-
-                return card;
-            }
-
-            function renderCards(list, containerId) {
-                var container = document.getElementById(containerId);
-                if (!container) {
-                    return;
-                }
-
-                while (container.firstChild) {
-                    container.removeChild(container.firstChild);
-                }
-
-                for (var i = 0; i < list.length; i++) {
-                    container.appendChild(createCard(list[i]));
-                }
-            }
-
-            var initialized = false;
-            function initCards() {
-                if (initialized) { return; }
-                initialized = true;
-                renderCards(upcoming, 'upcoming-grid');
-                renderCards(past, 'past-grid');
-            }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initCards);
-            } else {
-                initCards();
-            }
-        })();
-    //]]>
-    </script>
+    <script type="text/javascript" src="competitions.js"></script>
 
 </body>
 </html>

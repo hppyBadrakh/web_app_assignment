@@ -275,6 +275,27 @@ ul {
     padding: 40px 0;
 }
 
+.search-row {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 520px;
+    padding: 14px 18px;
+    border: var(--border-val);
+    border-radius: 24px;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--trans);
+}
+
+.search-input:focus {
+    box-shadow: 0 0 0 3px rgba(94, 181, 98, 0.35);
+}
+
 .section-head {
     margin-bottom: 30px;
 }
