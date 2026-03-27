@@ -123,56 +123,66 @@
     // 5. FETCH 
     let DATA_URL = 'https://api.jsonbin.io/v3/b/69bceb63b7ec241ddc860846';
     let SEED_DATA = [
-        {
-            id: 1,
-            title: '2026 \u043e\u043d\u044b \u0425\u0430\u0432\u0440\u044b\u043d \u041c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0438\u0439\u043d \u0430\u0432\u0430\u0440\u0433\u0430 \u0448\u0430\u043b\u0433\u0430\u0440\u0443\u0443\u043b\u0430\u0445 \u0442\u044d\u043c\u0446\u044d\u044d\u043d',
-            date: '4-\u0440 \u0441\u0430\u0440\u044b\u043d 15',
-            meta: '1,247 \u043e\u0440\u043e\u043b\u0446\u043e\u0433\u0447',
-            prize: '$500 + \u0413\u044d\u0440\u0447\u0438\u043b\u0433\u044d\u044d',
-            actionText: '\u041e\u0440\u043e\u043b\u0446\u043e\u0445',
-            actionClass: 'green-btn',
-            status: 'upcoming'
-        },
-        {
-            id: 2,
-            title: '\u0410\u043d\u0433\u043b\u0438 \u0445\u044d\u043b\u043d\u0438\u0439 \u0448\u0438\u043b\u0434\u044d\u0433\u04af\u04af\u0434\u0438\u0439\u043d \u0443\u0440\u0430\u043b\u0434\u0430\u0430\u043d',
-            date: '4-\u0440 \u0441\u0430\u0440\u044b\u043d 22',
-            meta: '892 \u043e\u0440\u043e\u043b\u0446\u043e\u0433\u0447',
-            prize: '$300 + \u0413\u044d\u0440\u0447\u0438\u043b\u0433\u044d\u044d',
-            actionText: '\u041e\u0440\u043e\u043b\u0446\u043e\u0445',
-            actionClass: 'green-btn',
-            status: 'upcoming'
-        },
-        {
-            id: 3,
-            title: '\u0422\u04af\u0440\u0433\u044d\u043d \u041c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0438\u0439\u043d \u0428\u0430\u043b\u0433\u0430\u043b\u0442',
-            date: '3-\u0440 \u0441\u0430\u0440\u044b\u043d 30',
-            meta: '1,523 \u043e\u0440\u043e\u043b\u0446\u043e\u0433\u0447',
-            prize: '\u0413\u044d\u0440\u0447\u0438\u043b\u0433\u044d\u044d',
-            actionText: '\u041e\u0440\u043e\u043b\u0446\u043e\u043b\u0446\u043e\u0445',
-            actionClass: 'green-btn',
-            status: 'upcoming'
-        },
-        {
-            id: 4,
-            title: '2025 \u043e\u043d\u044b \u04e8\u0432\u043b\u0438\u0439\u043d \u041c\u0430\u0442\u0435\u043c\u0430\u0442\u0438\u043a\u0438\u0439\u043d \u0427\u0435\u043b\u043b\u0435\u043d\u0436',
-            date: '2025 \u043e\u043d\u044b 12-\u0440 \u0441\u0430\u0440\u044b\u043d 10',
-            meta: '2,156 \u043e\u0440\u043e\u043b\u0446\u043e\u0433\u0447',
-            prize: null,
-            actionText: '\u04ae\u0440 \u0434\u04af\u043d\u0433 \u0445\u0430\u0440\u0430\u0445',
-            actionClass: 'white-btn',
-            status: 'past'
-        },
-        {
-            id: 5,
-            title: '2025 \u043e\u043d\u044b \u0413\u0440\u0430\u043c\u043c\u0430\u0441\u044b\u043d \u041c\u0430\u0441\u0442\u0435\u0440',
-            date: '2025 \u043e\u043d\u044b 11-\u0440 \u0441\u0430\u0440\u044b\u043d 5',
-            meta: '1,834 \u043e\u0440\u043e\u043b\u0446\u043e\u0433\u0447',
-            prize: null,
-            actionText: '\u04ae\u0440 \u0434\u04af\u043d\u0433 \u0445\u0430\u0440\u0430\u0445',
-            actionClass: 'white-btn',
-            status: 'past'
-        }
+            {
+                "id": 1,
+                "title": "2026 оны Хаврын Математикийн аварга шалгаруулах тэмцээн",
+                "date": "4-р сарын 15",
+                "meta": "1,247 оролцогч",
+                "prize": "$500 + Гэрчилгээ",
+                "actionText": "Оролцох",
+                "actionClass": "green-btn",
+                "status": "upcoming"
+                },
+                {
+                "id": 2,
+                "title": "Англи хэлний шилдэгүүдийн уралдаан",
+                "date": "4-р сарын 22",
+                "meta": "892 оролцогч",
+                "prize": "$300 + Гэрчилгээ",
+                "actionText": "Оролцох",
+                "actionClass": "green-btn",
+                "status": "upcoming"
+                },
+                {
+                "id": 3,
+                "title": "Түргэн Математикийн Шалгалт",
+                "date": "3-р сарын 30",
+                "meta": "1,523 оролцогч",
+                "prize": "Гэрчилгээ",
+                "actionText": "Оролцолцох",
+                "actionClass": "green-btn",
+                "status": "upcoming"
+                },
+                {
+                "id": 4,
+                "title": "2025 оны Өвлийн Математикийн Челленж",
+                "date": "2025 оны 12-р сарын 10",
+                "meta": "2,156 оролцогч",
+                "prize": null,
+                "actionText": "Үр дүнг харах",
+                "actionClass": "white-btn",
+                "status": "past"
+                },
+                {
+                "id": 5,
+                "title": "2025 оны Граммасыин Мастер",
+                "date": "2025 оны 11-р сарын 5",
+                "meta": "1,834 оролцогч",
+                "prize": null,
+                "actionText": "Үр дүнг харах",
+                "actionClass": "white-btn",
+                "status": "past"
+                },
+                {
+                "id": 6,
+                "title": "2026 оны Граммасыин Мастер",
+                "date": "2026 оны 11-р сарын 5",
+                "meta": "1,834 оролцогч",
+                "prize": null,
+                "actionText": "Үр дүнг харах",
+                "actionClass": "white-btn",
+                "status": "past"
+                }
     ];
 
     function fetchData() {
