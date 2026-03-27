@@ -2066,3 +2066,93 @@ PROFILE PAGE
   font-weight: bold;
   font-size: 16px;
 }
+
+/* ============================================================
+   CARD ACTION BUTTONS (Like / Favorite / Save)
+   ============================================================ */
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0 14px;
+}
+
+.card-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    border: var(--border-val);
+    border-radius: 12px;
+    background: var(--bg);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--trans);
+    box-shadow: 2px 2px 0 #1a1a1a;
+}
+
+.card-action-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 #1a1a1a;
+}
+
+.card-action-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 0 0 0 #1a1a1a;
+}
+
+.action-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.action-count {
+    font-size: 0.8rem;
+}
+
+/* Like button active */
+.like-btn.active {
+    background: #ffe0e0;
+    border-color: #c0392b;
+    color: #c0392b;
+}
+
+.like-btn.active .action-icon {
+    color: #e74c3c;
+}
+
+/* Favorite button active */
+.fav-btn.active {
+    background: #fff8e0;
+    border-color: #b8860b;
+    color: #b8860b;
+}
+
+.fav-btn.active .action-icon {
+    color: #f39c12;
+}
+
+/* Save button active */
+.save-btn.active {
+    background: #e0f0ff;
+    border-color: #2471a3;
+    color: #2471a3;
+}
+
+.save-btn.active .action-icon {
+    color: #3498db;
+}
+
+/* Responsive: stack actions vertically on very small screens */
+@media (max-width: 400px) {
+    .card-actions {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .card-action-btn {
+        padding: 5px 10px;
+        font-size: 0.78rem;
+    }
+}

@@ -33,9 +33,9 @@
                     </ul>
                 </li>
                 <li><a href="help.xhtml">Тусламж</a></li>
-                <div class="user-profile">
+                <li class="user-profile">
                     <a href="profile.xhtml" class="avatar">&#128100;</a>
-                </div>
+                </li>
             </ul>
         </div>
     </div>
@@ -81,39 +81,19 @@
                 </div>
             </div>
 
-            <!-- Main Content -->
+            <!-- Main Content — exam cards rendered dynamically by tests.js -->
             <div class="exams-content">
-                <input type="text" class="exams-search" placeholder="Шалгалтуудыг сэдэв эсвэл жилээр хайна уу..." />
+                <input type="text" id="exam-search" class="exams-search"
+                       placeholder="Шалгалтуудыг сэдэв эсвэл жилээр хайна уу..." />
 
-                <div class="exam-grid">
-
-                    <div class="exam-card brutal">
-                        <div class="exam-card-icon icon-blue"></div>
-                        <div class="exam-card-name">2024 оны Математикийн загвар тест</div>
-                        <div class="exam-price">&#8366;18,900</div>
-                        <a href="#" class="btn-brutal green-btn">Дэлгэрэнгүй</a>
-                    </div>
-
-                    <div class="exam-card brutal">
-                        <div class="exam-card-icon icon-gold"></div>
-                        <div class="exam-card-name">2024 оны Математикийн загвар тест</div>
-                        <div class="exam-price">&#8366;15,000</div>
-                        <a href="#" class="btn-brutal green-btn">Дэлгэрэнгүй</a>
-                    </div>
-
-                    <div class="exam-card brutal">
-                        <div class="exam-card-icon icon-green"></div>
-                        <div class="exam-card-name">2024 оны Физикийн загвар тест</div>
-                        <div class="exam-price">&#8366;15,000</div>
-                        <a href="#" class="btn-brutal green-btn">Дэлгэрэнгүй</a>
-                    </div>
-
-                </div>
+                <div id="exam-grid" class="exam-grid">&#160;</div>
             </div>
 
         </div>
     </div>
 
+    <script type="text/javascript" src="components.js"></script>
+    <script type="text/javascript" src="tests.js"></script>
 </body>
 
 </html>
