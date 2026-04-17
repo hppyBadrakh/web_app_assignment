@@ -1,0 +1,11 @@
+[
+  { "id": 1, "icon": "📐", "iconColor": "icon-blue", "name": "2024 оны Математикийн загвар тест", "price": "₮18,900", "subject": "Математик", "year": "2024", "questions": 50, "duration": "90 мин", "difficulty": "Дунд" },
+  { "id": 2, "icon": "📖", "iconColor": "icon-gold", "name": "2024 оны Монгол хэлний загвар тест", "price": "₮15,000", "subject": "Монгол хэл", "year": "2024", "questions": 40, "duration": "60 мин", "difficulty": "Хялбар" },
+  { "id": 3, "icon": "🔬", "iconColor": "icon-green", "name": "2024 оны Физикийн загвар тест", "price": "₮15,000", "subject": "Физик", "year": "2024", "questions": 45, "duration": "75 мин", "difficulty": "Хэцүү" },
+  { "id": 4, "icon": "📐", "iconColor": "icon-blue", "name": "2023 оны Математикийн загвар тест", "price": "₮14,900", "subject": "Математик", "year": "2023", "questions": 50, "duration": "90 мин", "difficulty": "Дунд" },
+  { "id": 5, "icon": "🧪", "iconColor": "icon-gold", "name": "2023 оны Химийн загвар тест", "price": "₮12,000", "subject": "Хими", "year": "2023", "questions": 40, "duration": "60 мин", "difficulty": "Дунд" },
+  { "id": 6, "icon": "🌿", "iconColor": "icon-green", "name": "2023 оны Биологийн загвар тест", "price": "₮12,000", "subject": "Биологи", "year": "2023", "questions": 45, "duration": "75 мин", "difficulty": "Хялбар" },
+  { "id": 7, "icon": "🔤", "iconColor": "icon-blue", "name": "2024 оны Англи хэлний загвар тест", "price": "₮15,000", "subject": "Англи хэл", "year": "2024", "questions": 60, "duration": "90 мин", "difficulty": "Дунд" },
+  { "id": 8, "icon": "📜", "iconColor": "icon-gold", "name": "2023 оны Түүхийн загвар тест", "price": "₮10,000", "subject": "Түүх", "year": "2023", "questions": 35, "duration": "60 мин", "difficulty": "Хялбар" },
+  { "id": 9, "icon": "🔭", "iconColor": "icon-green", "name": "2022 оны Физикийн загвар тест", "price": "₮12,000", "subject": "Физик", "year": "2022", "questions": 45, "duration": "75 мин", "difficulty": "Хэцүү" }
+]
