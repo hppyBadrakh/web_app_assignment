@@ -12,6 +12,8 @@
   --border-val: 2px solid #1a1a1a;
   --shadow-val: 3px 3px 0px 0px #1a1a1a;
   --trans: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --navbar-h: 62px;
+  --topbar-h: 57px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,6 +55,7 @@ ul { list-style: none; }
   position: sticky;
   top: 0;
   z-index: 100;
+  height: var(--navbar-h);
 }
 
 .logo-group {
@@ -595,7 +598,66 @@ ul { list-style: none; }
   box-shadow: 8px 8px 0 #1a1a1a; max-width: 500px; width: 100%; padding: 32px;
 }
 
-/* ── RESPONSIVE ── */
+/* ── TAKE TEST ── */
+.taketest-wrap { min-height: calc(100vh - var(--navbar-h)); background: var(--bg); }
+
+.taketest-topbar {
+  background: var(--surf); border-bottom: var(--border-val);
+  padding: 10px 0;
+}
+.topbar-inner {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+}
+.topbar-info { min-width: 0; flex: 1; }
+.topbar-title {
+  font-weight: 900; font-size: 1rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.topbar-sub { font-size: 0.8rem; color: #666; margin-top: 2px; }
+.topbar-timer {
+  font-weight: 900; font-size: 1.4rem;
+  color: var(--green);
+  border: 2px solid #1a1a1a; border-radius: 12px;
+  padding: 5px 16px; background: var(--surf);
+  white-space: nowrap; flex-shrink: 0;
+}
+.topbar-timer.low {
+  color: #e74c3c; border-color: #e74c3c;
+  background: #fff5f5; animation: pulse 1s infinite;
+}
+
+.taketest-body {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 60px;
+  align-items: flex-start;
+}
+.taketest-main { padding: 28px; }
+.taketest-sidebar { position: sticky; top: calc(var(--navbar-h) + var(--topbar-h) + 12px); }
+
+.question-nav {
+  display: flex; justify-content: space-between;
+  margin-top: 28px; gap: 12px;
+}
+.question-nav .btn-brutal { flex: 1; margin-top: 0; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ── TOUCH DEVICES ── */
+@media (hover: none) {
+  .brutal:hover { transform: none; box-shadow: var(--shadow-val); }
+  .btn-hero-primary:hover, .btn-hero-outline:hover { transform: none; box-shadow: 4px 4px 0 #1a1a1a; }
+  .card-action-btn:hover { transform: none; box-shadow: 2px 2px 0 #1a1a1a; }
+  .ready-cta a:hover { transform: none; box-shadow: 4px 4px 0 #1a1a1a; }
+}
+
+/* ── RESPONSIVE 900px ── */
 @media (max-width: 900px) {
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .grid-4 { grid-template-columns: 1fr 1fr; }
@@ -606,7 +668,7 @@ ul { list-style: none; }
     display: flex !important;
     flex-direction: column;
     position: absolute;
-    top: 65px; left: 0; right: 0;
+    top: var(--navbar-h); left: 0; right: 0;
     background: var(--surf);
     border-bottom: var(--border-val);
     gap: 0; padding: 20px; z-index: 99;
@@ -640,8 +702,14 @@ ul { list-style: none; }
   .profile-layout { flex-direction: column; }
   .profile-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; }
   .profile-menu-btn { flex: 1; min-width: 140px; }
+
+  /* TakeTest */
+  .taketest-body { grid-template-columns: 1fr; padding-top: 20px; }
+  .taketest-sidebar { position: static; }
+  .taketest-main { padding: 20px; }
 }
 
+/* ── RESPONSIVE 600px ── */
 @media (max-width: 600px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .footer-content { grid-template-columns: 1fr !important; }
@@ -655,4 +723,26 @@ ul { list-style: none; }
   .card-action-btn { padding: 5px 10px; font-size: 0.78rem; }
   .ranking-cta { padding: 30px 15px; margin: 20px 0; }
   .leaderboard-btn { padding: 12px 25px; font-size: 0.9rem; }
+
+  /* Modal */
+  .modal-overlay { padding: 10px; align-items: flex-end; }
+  .modal-content { padding: 20px; border-radius: 20px 20px 0 0; max-height: 90vh; overflow-y: auto; }
+
+  /* Profile stats (modal + results) */
+  .profile-stats { gap: 12px; }
+  .profile-stat { padding: 14px; }
+  .profile-stat h3 { font-size: 1.2rem; }
+
+  /* History rows */
+  .history-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .subject-right { width: 100%; justify-content: space-between; }
+
+  /* TakeTest topbar */
+  .topbar-title { font-size: 0.88rem; }
+  .topbar-sub { font-size: 0.72rem; }
+  .topbar-timer { font-size: 1.1rem; padding: 4px 12px; border-radius: 8px; }
+
+  /* TakeTest body */
+  .taketest-main { padding: 14px; }
+  .taketest-body { gap: 16px; padding-top: 16px; padding-bottom: 40px; }
 }

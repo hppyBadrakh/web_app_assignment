@@ -9,6 +9,7 @@ import TestHistory from './pages/TestHistory'
 import PaymentInfo from './pages/PaymentInfo'
 import ChangePassword from './pages/ChangePassword'
 import Help from './pages/Help'
+import TakeTest from './pages/TakeTest'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/payment-info" element={<PaymentInfo />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/help" element={<Help />} />
+        <Route path="/test/:id" element={<TakeTest />} />
       </Routes>
       <Footer />
     </HashRouter>

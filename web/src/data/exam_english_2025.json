@@ -1,0 +1,576 @@
+{
+  "id": 10,
+  "title": "2025 оны Англи хэлний шалгалт — Хувилбар А",
+  "subject": "Англи хэл",
+  "year": "2025",
+  "duration": 90,
+  "totalPoints": 80,
+  "questions": [
+    {
+      "id": 1, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "___ is becoming increasingly popular among young people lately.",
+      "options": [
+        {"letter": "A", "text": "Vegetable"},
+        {"letter": "B", "text": "Vegetarianism"},
+        {"letter": "C", "text": "Vegetarian"},
+        {"letter": "D", "text": "Vegetate"},
+        {"letter": "E", "text": "Vegetation"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 2, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "Unfortunately, she had _________ friends for help.",
+      "options": [
+        {"letter": "A", "text": "little"},
+        {"letter": "B", "text": "a few"},
+        {"letter": "C", "text": "few"},
+        {"letter": "D", "text": "a little"},
+        {"letter": "E", "text": "much"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 3, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "They ________ leave at 11 o'clock last night because the last bus went at 11.20.",
+      "options": [
+        {"letter": "A", "text": "don't have to"},
+        {"letter": "B", "text": "must"},
+        {"letter": "C", "text": "have to"},
+        {"letter": "D", "text": "had to"},
+        {"letter": "E", "text": "need"}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 4, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "This is the bank _________ was robbed yesterday.",
+      "options": [
+        {"letter": "A", "text": "whom"},
+        {"letter": "B", "text": "who"},
+        {"letter": "C", "text": "whose"},
+        {"letter": "D", "text": "where"},
+        {"letter": "E", "text": "which"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 5, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "Would you mind not __________ the radio until I've finished with this phone call?",
+      "options": [
+        {"letter": "A", "text": "to turn on"},
+        {"letter": "B", "text": "turning on"},
+        {"letter": "C", "text": "to be turning on"},
+        {"letter": "D", "text": "turn on"},
+        {"letter": "E", "text": "to be turned on"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 6, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "I occasionally go to the gym but I should go ________ than I do.",
+      "options": [
+        {"letter": "A", "text": "the most frequent"},
+        {"letter": "B", "text": "frequent"},
+        {"letter": "C", "text": "more frequently"},
+        {"letter": "D", "text": "more frequent"},
+        {"letter": "E", "text": "frequently"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 7, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "My boss complained __________ my arriving late last week.",
+      "options": [
+        {"letter": "A", "text": "for"},
+        {"letter": "B", "text": "of"},
+        {"letter": "C", "text": "on"},
+        {"letter": "D", "text": "in"},
+        {"letter": "E", "text": "about"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 8, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "Draughts _____ not a complicated game.",
+      "options": [
+        {"letter": "A", "text": "have"},
+        {"letter": "B", "text": "are"},
+        {"letter": "C", "text": "were"},
+        {"letter": "D", "text": "is"},
+        {"letter": "E", "text": "has"}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 9, "section": "Section 1 — Grammar", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "The older he gets, ______ he becomes.",
+      "options": [
+        {"letter": "A", "text": "the wiser"},
+        {"letter": "B", "text": "more wiser"},
+        {"letter": "C", "text": "the wisest"},
+        {"letter": "D", "text": "wiser"},
+        {"letter": "E", "text": "wisest"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 10, "section": "Section 1 — Grammar", "task": "Task 2 (4×2=8 pts)", "points": 2,
+      "text": "If the questions _______ too difficult, we _______ them.",
+      "options": [
+        {"letter": "A", "text": "are / would answer"},
+        {"letter": "B", "text": "hadn't been / would have answered"},
+        {"letter": "C", "text": "haven't been / will be answered"},
+        {"letter": "D", "text": "have / would have answered"},
+        {"letter": "E", "text": "hadn't been / wouldn't have answered"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 11, "section": "Section 1 — Grammar", "task": "Task 2 (4×2=8 pts)", "points": 2,
+      "text": "Everyone thought she would accept a new job ________ it was difficult.",
+      "options": [
+        {"letter": "A", "text": "in spite of"},
+        {"letter": "B", "text": "despite"},
+        {"letter": "C", "text": "even though"},
+        {"letter": "D", "text": "moreover"},
+        {"letter": "E", "text": "however"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 12, "section": "Section 1 — Grammar", "task": "Task 2 (4×2=8 pts)", "points": 2,
+      "text": "The students' problems _____________ by the survey.",
+      "options": [
+        {"letter": "A", "text": "will have revealed"},
+        {"letter": "B", "text": "have revealed"},
+        {"letter": "C", "text": "are have revealed"},
+        {"letter": "D", "text": "haven't been revealed"},
+        {"letter": "E", "text": "hasn't been revealed"}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 13, "section": "Section 1 — Grammar", "task": "Task 2 (4×2=8 pts)", "points": 2,
+      "text": "Jennifer said, \"I'm going to work in the space exploration next year.\"",
+      "options": [
+        {"letter": "A", "text": "Jennifer said she was going to work in the space exploration the following year."},
+        {"letter": "B", "text": "Jennifer said I was going to work in the space exploration the following year."},
+        {"letter": "C", "text": "Jennifer said she was going to work in the space exploration a year later."},
+        {"letter": "D", "text": "Jennifer said I was going to work in the space exploration next year."},
+        {"letter": "E", "text": "Jennifer said she is going to work in the space exploration the following year."}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 14, "section": "Section 1 — Grammar", "task": "Task 3 — Identify the incorrect underlined word/phrase (3×3=9 pts)", "points": 3,
+      "text": "Five-credits-hour courses are approved for the student's work in the major field of interest.",
+      "options": [
+        {"letter": "A", "text": "five-credits-hour"},
+        {"letter": "B", "text": "are approved"},
+        {"letter": "C", "text": "student's"},
+        {"letter": "D", "text": "the major"},
+        {"letter": "E", "text": "of interest"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 15, "section": "Section 1 — Grammar", "task": "Task 3 — Identify the incorrect underlined word/phrase (3×3=9 pts)", "points": 3,
+      "text": "Until the 1400s, most books and texts were producing by scribes who copied them by hand.",
+      "options": [
+        {"letter": "A", "text": "most books"},
+        {"letter": "B", "text": "producing"},
+        {"letter": "C", "text": "by scribes"},
+        {"letter": "D", "text": "copied"},
+        {"letter": "E", "text": "by hand"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 16, "section": "Section 1 — Grammar", "task": "Task 3 — Identify the incorrect underlined word/phrase (3×3=9 pts)", "points": 3,
+      "text": "Some individuals see the issue of smoking as a matter of personal freedom or choices.",
+      "options": [
+        {"letter": "A", "text": "individuals"},
+        {"letter": "B", "text": "smoking"},
+        {"letter": "C", "text": "a matter"},
+        {"letter": "D", "text": "freedom"},
+        {"letter": "E", "text": "choices"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 17, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "Which item is made from cotton?",
+      "options": [
+        {"letter": "A", "text": "a raincoat"},
+        {"letter": "B", "text": "a shirt"},
+        {"letter": "C", "text": "a wristband"},
+        {"letter": "D", "text": "nylons"},
+        {"letter": "E", "text": "a jumper"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 18, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "A young horse is called? A ________ .",
+      "options": [
+        {"letter": "A", "text": "fawn"},
+        {"letter": "B", "text": "kid"},
+        {"letter": "C", "text": "cub"},
+        {"letter": "D", "text": "lamb"},
+        {"letter": "E", "text": "foal"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 19, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "A _______ is a part of the building where a vehicle is kept.",
+      "options": [
+        {"letter": "A", "text": "garage"},
+        {"letter": "B", "text": "patio"},
+        {"letter": "C", "text": "garden"},
+        {"letter": "D", "text": "shade"},
+        {"letter": "E", "text": "concrete"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 20, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "Name the means of transport the front part of which is a cockpit.",
+      "options": [
+        {"letter": "A", "text": "coach"},
+        {"letter": "B", "text": "aircraft"},
+        {"letter": "C", "text": "caravan"},
+        {"letter": "D", "text": "train"},
+        {"letter": "E", "text": "ferry"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 21, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "A _______ uses a computer or smartphone to commit crimes.",
+      "options": [
+        {"letter": "A", "text": "kidnapper"},
+        {"letter": "B", "text": "fraudster"},
+        {"letter": "C", "text": "vandal"},
+        {"letter": "D", "text": "mugger"},
+        {"letter": "E", "text": "cybercriminal"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 22, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "As soon as Lydia and I met, we knew we were going to get ________ well.",
+      "options": [
+        {"letter": "A", "text": "up"},
+        {"letter": "B", "text": "(a) round"},
+        {"letter": "C", "text": "at"},
+        {"letter": "D", "text": "on"},
+        {"letter": "E", "text": "in"}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 23, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "It was sunny and hot. Which phrase means the same?",
+      "options": [
+        {"letter": "A", "text": "There was a bit of drizzle."},
+        {"letter": "B", "text": "There were a few sunny showers."},
+        {"letter": "C", "text": "It was very overcast."},
+        {"letter": "D", "text": "There was quite a breeze."},
+        {"letter": "E", "text": "We had a bit of heat wave."}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 24, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "It's so easy to get around. Public transport is excellent – it's cheap and __________ .",
+      "options": [
+        {"letter": "A", "text": "useful"},
+        {"letter": "B", "text": "efficient"},
+        {"letter": "C", "text": "cosmopolitan"},
+        {"letter": "D", "text": "stressful"},
+        {"letter": "E", "text": "crowded"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 25, "section": "Section 2 — Vocabulary", "task": "Task 1 (9×1=9 pts)", "points": 1,
+      "text": "\"They won two nil.\" What does 'nil' refer to in this context?",
+      "options": [
+        {"letter": "A", "text": "year somebody was born"},
+        {"letter": "B", "text": "the temperature"},
+        {"letter": "C", "text": "a telephone number"},
+        {"letter": "D", "text": "the score in a tennis match"},
+        {"letter": "E", "text": "the result of the football match"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 26, "section": "Section 2 — Vocabulary", "task": "Task 2 — Choose the verb that best fits the story (5×2=10 pts)", "points": 2,
+      "passage": "A few months ago Ron was arrested by the police, who (26) ____________ him of being involved in a robbery at a local post office. He had been (27) __________ previously of petty crime, but never anything serious. The police (28) __________ him for several hours and finally (29) __________ him with robbery. A few weeks later he got a letter saying that he had to appear in court the following month when his case would be (30) __________ .\n\nVerb options: A. suspected  B. heard  C. questioned  D. charged  E. convicted",
+      "text": "The police, who (26) ____________ him of being involved in a robbery.",
+      "options": [
+        {"letter": "A", "text": "suspected"},
+        {"letter": "B", "text": "heard"},
+        {"letter": "C", "text": "questioned"},
+        {"letter": "D", "text": "charged"},
+        {"letter": "E", "text": "convicted"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 27, "section": "Section 2 — Vocabulary", "task": "Task 2 — Choose the verb that best fits the story (5×2=10 pts)", "points": 2,
+      "text": "He had been (27) __________ previously of petty crime.",
+      "options": [
+        {"letter": "A", "text": "suspected"},
+        {"letter": "B", "text": "heard"},
+        {"letter": "C", "text": "questioned"},
+        {"letter": "D", "text": "charged"},
+        {"letter": "E", "text": "convicted"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 28, "section": "Section 2 — Vocabulary", "task": "Task 2 — Choose the verb that best fits the story (5×2=10 pts)", "points": 2,
+      "text": "The police (28) __________ him for several hours.",
+      "options": [
+        {"letter": "A", "text": "suspected"},
+        {"letter": "B", "text": "heard"},
+        {"letter": "C", "text": "questioned"},
+        {"letter": "D", "text": "charged"},
+        {"letter": "E", "text": "convicted"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 29, "section": "Section 2 — Vocabulary", "task": "Task 2 — Choose the verb that best fits the story (5×2=10 pts)", "points": 2,
+      "text": "...and finally (29) __________ him with robbery.",
+      "options": [
+        {"letter": "A", "text": "suspected"},
+        {"letter": "B", "text": "heard"},
+        {"letter": "C", "text": "questioned"},
+        {"letter": "D", "text": "charged"},
+        {"letter": "E", "text": "convicted"}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 30, "section": "Section 2 — Vocabulary", "task": "Task 2 — Choose the verb that best fits the story (5×2=10 pts)", "points": 2,
+      "text": "...his case would be (30) __________ in court the following month.",
+      "options": [
+        {"letter": "A", "text": "suspected"},
+        {"letter": "B", "text": "heard"},
+        {"letter": "C", "text": "questioned"},
+        {"letter": "D", "text": "charged"},
+        {"letter": "E", "text": "convicted"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 31, "section": "Section 2 — Vocabulary", "task": "Task 3 (3×3=9 pts)", "points": 3,
+      "text": "In which sentence does \"to take off\" mean \"to remove something from a surface\"?",
+      "options": [
+        {"letter": "A", "text": "Take off your shoes. You're getting mud on the carpet."},
+        {"letter": "B", "text": "You need to take the old wax off the floor before you wax it again."},
+        {"letter": "C", "text": "Our plane took off an hour late because of the snow."},
+        {"letter": "D", "text": "If this business takes off, we could make a lot of money."},
+        {"letter": "E", "text": "Alfonso always takes the skin off chicken before he cooks it."}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 32, "section": "Section 2 — Vocabulary", "task": "Task 3 (3×3=9 pts)", "points": 3,
+      "text": "Choose the particle that best fits in the gap.\n\nI think he has the flu because you don't usually throw ___________ when you have a cold.",
+      "options": [
+        {"letter": "A", "text": "back"},
+        {"letter": "B", "text": "out"},
+        {"letter": "C", "text": "on"},
+        {"letter": "D", "text": "off"},
+        {"letter": "E", "text": "up"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 33, "section": "Section 2 — Vocabulary", "task": "Task 3 (3×3=9 pts)", "points": 3,
+      "text": "Choose the verb that best fits in the gap.\n\nI'm sorry to cancel, but I just don't _________ up to going dancing today.",
+      "options": [
+        {"letter": "A", "text": "look"},
+        {"letter": "B", "text": "feel"},
+        {"letter": "C", "text": "take"},
+        {"letter": "D", "text": "get"},
+        {"letter": "E", "text": "bring"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 34, "section": "Section 3 — Communication", "task": "Task 1 — Read the conversation and choose the correct answer (3×2=6 pts)", "points": 2,
+      "text": "Man: What seems to be the problem, ma'am?\nWoman: This sink is clogged up and the faucet is dripping.\n\nQuestion: What kind of work does the man probably do?",
+      "options": [
+        {"letter": "A", "text": "He's a driver."},
+        {"letter": "B", "text": "He's a mechanic."},
+        {"letter": "C", "text": "He's an engineer."},
+        {"letter": "D", "text": "He's a plumber."},
+        {"letter": "E", "text": "He's an electrician."}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 35, "section": "Section 3 — Communication", "task": "Task 1 — Read the conversation and choose the correct answer (3×2=6 pts)", "points": 2,
+      "text": "Woman: Where can I find the course books for Spanish 101?\nMan: They're in aisle 3, under languages.\n\nQuestion: Where is this conversation taking place?",
+      "options": [
+        {"letter": "A", "text": "In a supermarket."},
+        {"letter": "B", "text": "In a bookstore."},
+        {"letter": "C", "text": "In a library."},
+        {"letter": "D", "text": "At a travel agency."},
+        {"letter": "E", "text": "In a hospital."}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 36, "section": "Section 3 — Communication", "task": "Task 1 — Read the conversation and choose the correct answer (3×2=6 pts)", "points": 2,
+      "text": "Man: Did I miss anything while I was buying the hot dogs and sodas?\nWoman: Yes, our team scored a touchdown!\n\nQuestion: Where is this conversation taking place?",
+      "options": [
+        {"letter": "A", "text": "At a restaurant."},
+        {"letter": "B", "text": "At a shopping center."},
+        {"letter": "C", "text": "At a café."},
+        {"letter": "D", "text": "At the circus."},
+        {"letter": "E", "text": "At a stadium."}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 37, "section": "Section 3 — Communication", "task": "Task 2 (2×3=6 pts)", "points": 3,
+      "text": "Woman: Do you get pay raises where you work?\nMan: Yes, but they are few and far between.\n\nQuestion: What does the man mean?",
+      "options": [
+        {"letter": "A", "text": "He has to go far to get a raise."},
+        {"letter": "B", "text": "He gets lots of raises at his job."},
+        {"letter": "C", "text": "There are no raises given where he works."},
+        {"letter": "D", "text": "They don't give raises very often where he works."},
+        {"letter": "E", "text": "He has already got pay raises."}
+      ],
+      "correct": "D"
+    },
+    {
+      "id": 38, "section": "Section 3 — Communication", "task": "Task 2 (2×3=6 pts)", "points": 3,
+      "text": "Woman: I should tell them they need more decorations.\nMan: They never listen to anyone, so save your breath.\n\nQuestion: What does the man want the woman to do?",
+      "options": [
+        {"letter": "A", "text": "Hold her breath."},
+        {"letter": "B", "text": "Not say anything."},
+        {"letter": "C", "text": "Make some suggestions."},
+        {"letter": "D", "text": "Propose an idea."},
+        {"letter": "E", "text": "Listen to the others."}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 39, "section": "Section 4 — Reading", "task": "Task 1 — Read and answer (6×1=6 pts)", "points": 1,
+      "passage": "People who suffer from excessive drowsiness during the daytime may be victims of a condition known as \"narcolepsy.\" While most people may feel sleepy while watching TV or after eating a meal, narcoleptics may fall asleep at unusual or embarrassing times. They may doze while eating, talking, taking a shower, or even driving a car. Victims can be affected in one of two ways. Most narcoleptics have several sleeping spells during each day with alert periods in between. A minority of others feel drowsy almost all the time and are alert for only brief intervals.\n\nThere are no reliable data showing how many people have narcolepsy. Some estimates put the number as high as 300,000 in the United States alone. The cause of this illness has not been identified, although recent research suggests that the problem may stem from an immune system reacting abnormally to the brain's chemical processes. There is currently no cure for narcolepsy, so sufferers of this condition can only have their symptoms treated through a combination of counseling and drugs.",
+      "text": "What is the main topic of this passage?",
+      "options": [
+        {"letter": "A", "text": "Development of narcolepsy"},
+        {"letter": "B", "text": "Reliable cure for narcolepsy"},
+        {"letter": "C", "text": "Aspects of narcolepsy"},
+        {"letter": "D", "text": "Causes of narcolepsy"},
+        {"letter": "E", "text": "Treatment of narcolepsy"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 40, "section": "Section 4 — Reading", "task": "Task 1 — Read and answer (6×1=6 pts)", "points": 1,
+      "text": "Narcolepsy is a condition in which people",
+      "options": [
+        {"letter": "A", "text": "have unusual brain chemistry"},
+        {"letter": "B", "text": "doze after eating a meal"},
+        {"letter": "C", "text": "doze at unusual times"},
+        {"letter": "D", "text": "only sleep in the day"},
+        {"letter": "E", "text": "feel drowsy during the lunch break"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 41, "section": "Section 4 — Reading", "task": "Task 1 — Read and answer (6×1=6 pts)", "points": 1,
+      "text": "A person is most likely to be narcoleptic if he or she falls asleep while",
+      "options": [
+        {"letter": "A", "text": "taking a long car trip"},
+        {"letter": "B", "text": "reading a book"},
+        {"letter": "C", "text": "watching a movie"},
+        {"letter": "D", "text": "lying on the beach"},
+        {"letter": "E", "text": "eating at a restaurant"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 42, "section": "Section 4 — Reading", "task": "Task 1 — Read and answer (6×1=6 pts)", "points": 1,
+      "text": "The passage implies that narcolepsy",
+      "options": [
+        {"letter": "A", "text": "can be a serious disorder"},
+        {"letter": "B", "text": "is an imaginary problem"},
+        {"letter": "C", "text": "is a rare case"},
+        {"letter": "D", "text": "is easily cured"},
+        {"letter": "E", "text": "is really laziness"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 43, "section": "Section 4 — Reading", "task": "Task 1 — Read and answer (6×1=6 pts)", "points": 1,
+      "text": "The word \"alert\" in the passage is closest in meaning to",
+      "options": [
+        {"letter": "A", "text": "alarmed"},
+        {"letter": "B", "text": "tired"},
+        {"letter": "C", "text": "drowsy"},
+        {"letter": "D", "text": "informed"},
+        {"letter": "E", "text": "awake"}
+      ],
+      "correct": "E"
+    },
+    {
+      "id": 44, "section": "Section 4 — Reading", "task": "Task 1 — Read and answer (6×1=6 pts)", "points": 1,
+      "text": "According to the passage, it can be said that",
+      "options": [
+        {"letter": "A", "text": "the number of narcoleptics is unknown"},
+        {"letter": "B", "text": "most people are narcoleptics sometimes"},
+        {"letter": "C", "text": "narcoleptics are drug addicts"},
+        {"letter": "D", "text": "narcolepsy is a very rare condition"},
+        {"letter": "E", "text": "narcolepsy can easily be cured"}
+      ],
+      "correct": "A"
+    },
+    {
+      "id": 45, "section": "Section 4 — Reading", "task": "Task 2 — Choose the best phrase to fill each blank (2×3=6 pts)", "points": 3,
+      "passage": "In a hot, dry climate sweating is the best way for the body to lose excess heat. But in the tropics, where there is high humidity, increasing sweat production may offer no advantage because sweat does not evaporate. Studies of indigenous Nigerians have found that they have no more sweat glands than British men, but when they start physical work (45) _____ . This is because with repeated stimulation the sweat glands become larger and more efficient. Acclimatization to heat encourages a tendency (46) __________ . Nigerians, for example lose significantly less salt through sweating than British men.\n\nOptions: A. so as to help evaporation  B. for salt concentrations in sweat to decrease  C. they start sweating more quickly  D. to aid the loss of salt",
+      "text": "...but when they start physical work (45) _____ .",
+      "options": [
+        {"letter": "A", "text": "so as to help evaporation"},
+        {"letter": "B", "text": "for salt concentrations in sweat to decrease"},
+        {"letter": "C", "text": "they start sweating more quickly"},
+        {"letter": "D", "text": "to aid the loss of salt"}
+      ],
+      "correct": "C"
+    },
+    {
+      "id": 46, "section": "Section 4 — Reading", "task": "Task 2 — Choose the best phrase to fill each blank (2×3=6 pts)", "points": 3,
+      "text": "Acclimatization to heat encourages a tendency (46) __________ .",
+      "options": [
+        {"letter": "A", "text": "so as to help evaporation"},
+        {"letter": "B", "text": "for salt concentrations in sweat to decrease"},
+        {"letter": "C", "text": "they start sweating more quickly"},
+        {"letter": "D", "text": "to aid the loss of salt"}
+      ],
+      "correct": "B"
+    },
+    {
+      "id": 47, "section": "Section 4 — Reading", "task": "Task 3 (1×2=2 pts)", "points": 2,
+      "passage": "Owners of famous and valuable paintings have recently been commissioning talented artists to paint copies of these art treasures to exhibit in their homes.\n\nWhat is the most likely reason an owner of a valuable painting might want to exhibit a copy instead of the original?",
+      "text": "Choose the best answer.",
+      "options": [
+        {"letter": "A", "text": "Because they attract more potential buyers."},
+        {"letter": "B", "text": "Because they need to trick the experts."},
+        {"letter": "C", "text": "Because they want to encourage talented artists."},
+        {"letter": "D", "text": "Because they enjoy buying fake paintings."},
+        {"letter": "E", "text": "Because they hope to foil would-be thieves."}
+      ],
+      "correct": "E"
+    }
+  ]
+}

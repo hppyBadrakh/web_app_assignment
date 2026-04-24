@@ -1,8 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import ToggleButton from '../common/ToggleButton'
 import Modal from '../common/Modal'
 
+const LIVE_EXAM_IDS = new Set([10])
+
 function ExamCard({ exam }) {
+  const navigate = useNavigate()
   const { icon, iconColor, name, price, questions, duration, difficulty, subject, year } = exam
 
   const [likes, setLikes] = useState(() => Math.floor(Math.random() * 50) + 10)
@@ -55,7 +59,19 @@ function ExamCard({ exam }) {
           </p>
 
           <div style={{ display: 'flex', gap: '12px' }}>
-            <button className="btn-brutal green-btn btn-inline" style={{ flex: 1 }}>🚀 Шалгалт эхлэх</button>
+            {LIVE_EXAM_IDS.has(exam.id) ? (
+              <button
+                className="btn-brutal green-btn btn-inline"
+                style={{ flex: 1 }}
+                onClick={() => { setShowModal(false); navigate(`/test/${exam.id}`) }}
+              >
+                🚀 Шалгалт эхлэх
+              </button>
+            ) : (
+              <button className="btn-brutal white-btn btn-inline" style={{ flex: 1, opacity: 0.5, cursor: 'not-allowed' }} disabled>
+                🔒 Удахгүй...
+              </button>
+            )}
             <button className="btn-brutal white-btn btn-inline" style={{ flex: 1 }} onClick={() => setShowModal(false)}>Буцах</button>
           </div>
         </Modal>
