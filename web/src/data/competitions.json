@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "icon": "🏆",
+    "iconClass": "icon-gold",
+    "title": "Улсын Математикийн Олимпиад",
+    "date": "2024-05-20",
+    "status": "upcoming",
+    "participants": 1200,
+    "prize": "₮5,000,000",
+    "subject": "Математик",
+    "price": 15000,
+    "likes": 345
+  },
+  {
+    "id": 2,
+    "icon": "💻",
+    "iconClass": "icon-blue",
+    "title": "Мэдээлэл Зүйн Уралдаан",
+    "date": "2023-12-15",
+    "status": "past",
+    "participants": 850,
+    "prize": "₮3,000,000",
+    "subject": "Мэдээлэл зүй",
+    "price": 0,
+    "likes": 210
+  },
+  {
+    "id": 3,
+    "icon": "🔬",
+    "iconClass": "icon-green",
+    "title": "Физикийн Сорилго",
+    "date": "2024-06-10",
+    "status": "upcoming",
+    "participants": 500,
+    "prize": "₮2,000,000",
+    "subject": "Физик",
+    "price": 10000,
+    "likes": 89
+  },
+  {
+    "id": 4,
+    "icon": "🏆",
+    "iconClass": "icon-gold",
+    "title": "Математикийн сорил 2",
+    "date": "2024-05-21",
+    "status": "upcoming",
+    "participants": 1200,
+    "prize": "₮5,000,000",
+    "subject": "Математик",
+    "price": 15000,
+    "likes": 35
+  },
+  {
+    "id": 5,
+    "icon": "💻",
+    "iconClass": "icon-blue",
+    "title": "Физик уралдаант сорил",
+    "date": "2023-12-15",
+    "status": "past",
+    "participants": 850,
+    "prize": "₮3,000,000",
+    "subject": "Физик",
+    "price": 0,
+    "likes": 21
+  },
+  {
+    "id": 6,
+    "icon": "🔬",
+    "iconClass": "icon-green",
+    "title": "Монгол хэлний сорил",
+    "date": "2024-06-11",
+    "status": "upcoming",
+    "participants": 500,
+    "prize": "₮2,000,000",
+    "subject": "Монгол хэл",
+    "price": 10000,
+    "likes": 8
+  }
+]

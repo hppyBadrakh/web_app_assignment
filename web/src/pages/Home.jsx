@@ -4,6 +4,7 @@ import FeatureCard from '../components/cards/FeatureCard'
 import StatStripCard from '../components/cards/StatStripCard'
 import TeamMemberCard from '../components/cards/TeamMemberCard'
 import TestimonialCard from '../components/cards/TestimonialCard'
+import Modal from '../components/common/Modal'
 import features from '../data/features.json'
 import stats from '../data/stats.json'
 import team from '../data/team.json'
@@ -16,6 +17,11 @@ const BARS = [35, 55, 45, 70, 60, 80, 65, 90, 75]
 function Home() {
   const [testimonials, setTestimonials] = useState([])
   const [loading, setLoading] = useState(true)
+  
+  // Модал болон шинэ сэтгэгдлийн state-үүд
+  const [showModal, setShowModal] = useState(false)
+  const [newName, setNewName] = useState('')
+  const [newQuote, setNewQuote] = useState('')
 
   useEffect(() => {
     fetch('https://dummyjson.com/quotes?limit=9')
@@ -35,6 +41,27 @@ function Home() {
       .catch(() => setTestimonials([]))
       .finally(() => setLoading(false))
   }, [])
+
+  // Шинэ сэтгэгдэл илгээх функц
+  const handleAddTestimonial = (e) => {
+    e.preventDefault()
+    if (!newQuote.trim() || !newName.trim()) return
+
+    const newTestimonial = {
+      id: Date.now(),
+      name: newName,
+      quote: newQuote,
+      subject: SUBJECTS[Math.floor(Math.random() * SUBJECTS.length)],
+      points: POINTS[Math.floor(Math.random() * POINTS.length)],
+      avatarColor: COLORS[Math.floor(Math.random() * COLORS.length)],
+    }
+
+
+    // Формыг цэвэрлэж модалыг хаах
+    setNewQuote('')
+    setNewName('')
+    setShowModal(false)
+  }
 
   return (
     <main>
@@ -88,7 +115,8 @@ function Home() {
                     <div
                       key={i}
                       className="chart-bar"
-                      style={{ height: `${h}%`, left: `${i * 11}%` }}
+                      /* Bar chart-ийн height нь динамик учир хэвээр үлдээнэ */
+                      style={{ height: `${h}%`, left: `${i * 11}%` }} 
                     />
                   ))}
                 </div>
@@ -132,10 +160,18 @@ function Home() {
 
       {/* Testimonials */}
       <section className="testimonials-section container">
-        <h2>Оюутнуудын сэтгэгдэл</h2>
-        <p className="sub">Бидэнтэй хамт суралцагсдын туршлага</p>
+        <div className="section-head flex-row">
+          <div>
+            <h2>Оюутнуудын сэтгэгдэл</h2>
+            <p className="sub">Бидэнтэй хамт суралцагсдын туршлага</p>
+          </div>
+          <button className="btn-brutal green-btn btn-inline" onClick={() => setShowModal(true)}>
+            + Сэтгэгдэл нэмэх
+          </button>
+        </div>
+        
         {loading ? (
-          <p style={{ textAlign: 'center', padding: '40px', color: '#666' }}>Уншиж байна...</p>
+          <p className="text-center sub">Уншиж байна...</p>
         ) : (
           <div className="grid-3">
             {testimonials.map(t => <TestimonialCard key={t.id} testimonial={t} />)}
@@ -157,14 +193,14 @@ function Home() {
       {/* Ready CTA */}
       <section className="container">
         <div className="ready-cta">
-          <h3>🚀 Бэлэн үү? Одоо эхэл!</h3>
+          <h3>🚀 Бэлэн үү? Одооноос бэлдэж эхэл!</h3>
           <p>Хамгийн сайн бэлтгэлтэйгээр шалгалтдаа орцгооё!</p>
           <Link to="/tests">Шалгалт эхлэх</Link>
         </div>
       </section>
 
       {/* User count CTA */}
-      <section className="cta-section container" style={{ paddingBottom: '60px' }}>
+      <section className="cta-section container" /* style={{ paddingBottom: '60px' }} хасагдаж css класс нэмэгдэх боломжтой */>
         <div className="cta-box brutal">
           <div className="cta-icon">👥</div>
           <h2>10,000+</h2>
@@ -174,6 +210,34 @@ function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Add Testimonial Modal */}
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <div className="section-head">
+            <h2>Сэтгэгдэл үлдээх</h2>
+          </div>
+          <form onSubmit={handleAddTestimonial} className="history-list">
+            <input
+              type="text"
+              placeholder="Таны нэр"
+              value={newName}
+              onChange={e => setNewName(e.target.value)}
+              className="search-input"
+              required="required"
+            />
+            <textarea
+              placeholder="Сэтгэгдлээ энд бичнэ үү..."
+              value={newQuote}
+              onChange={e => setNewQuote(e.target.value)}
+              className="search-input"
+              rows="4"
+              required="required"
+            ></textarea>
+            <button type="submit" className="btn-brutal green-btn">Илгээх</button>
+          </form>
+        </Modal>
+      )}
     </main>
   )
 }

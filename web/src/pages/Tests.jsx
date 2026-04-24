@@ -1,23 +1,73 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import ExamCard from '../components/cards/ExamCard'
-import exams from '../data/exams.json'
+import initialExams from '../data/exams.json'
+
+// Бараа/Тестийн Class зохиомж
+class ExamItem {
+  constructor(obj) {
+    this.id = obj.id;
+    this.icon = obj.icon;
+    this.iconColor = obj.iconColor;
+    this.name = obj.name;
+    this.price = obj.price;
+    this.subject = obj.subject;
+    this.year = obj.year;
+    this.questions = obj.questions;
+    this.duration = obj.duration;
+    this.difficulty = obj.difficulty;
+  }
+}
 
 const SUBJECTS = ['Бүгд', 'Математик', 'Монгол хэл', 'Физик', 'Хими', 'Биологи', 'Англи хэл', 'Түүх']
 const YEARS = ['Бүгд', '2024', '2023', '2022']
 
 function Tests() {
-  const [search, setSearch] = useState('')
-  const [activeSubject, setActiveSubject] = useState('Бүгд')
-  const [activeYear, setActiveYear] = useState('Бүгд')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [exams, setExams] = useState([])
+  const [loading, setLoading] = useState(true)
 
+  // 1. Датаг Class хэлбэрт оруулан "татаж" авах (Mock fetch)
+  useEffect(() => {
+    // Сүлжээнээс татаж байгаа мэтээр дуурайлгах
+    const fetchData = async () => {
+      setLoading(true)
+      // Бодит fetch хийх бол: const res = await fetch('/data/exams.json'); const initialExams = await res.json();
+      const formattedData = initialExams.map(item => new ExamItem(item))
+      setExams(formattedData)
+      setLoading(false)
+    }
+    fetchData()
+  }, [])
+
+  // 2. URL-аас шүүлтүүрийн утгуудыг унших
+  const searchQuery = searchParams.get('search') || ''
+  const subjectQuery = searchParams.get('subject') || 'Бүгд'
+  const yearQuery = searchParams.get('year') || 'Бүгд'
+
+  // 3. URL-ийн дагуу шүүлт хийх
   const filtered = useMemo(() => {
     return exams.filter(e => {
-      const matchSearch = e.name.toLowerCase().includes(search.toLowerCase())
-      const matchSubject = activeSubject === 'Бүгд' || e.subject === activeSubject
-      const matchYear = activeYear === 'Бүгд' || e.year === activeYear
+      const matchSearch = e.name.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchSubject = subjectQuery === 'Бүгд' || e.subject === subjectQuery
+      const matchYear = yearQuery === 'Бүгд' || e.year === yearQuery
       return matchSearch && matchSubject && matchYear
     })
-  }, [search, activeSubject, activeYear])
+  }, [exams, searchQuery, subjectQuery, yearQuery])
+
+  // 4. URL-ийг шинэчлэх функц
+  const updateParams = (key, value) => {
+    setSearchParams(prev => {
+      if (value && value !== 'Бүгд') {
+        prev.set(key, value)
+      } else {
+        prev.delete(key)
+      }
+      return prev
+    })
+  }
+
+  if (loading) return <div className="container" style={{padding: '100px', textAlign: 'center'}}>Уншиж байна...</div>
 
   return (
     <main>
@@ -35,8 +85,8 @@ function Tests() {
             {SUBJECTS.map(s => (
               <button
                 key={s}
-                className={`filter-btn ${activeSubject === s ? 'active' : ''}`}
-                onClick={() => setActiveSubject(s)}
+                className={`filter-btn ${subjectQuery === s ? 'active' : ''}`}
+                onClick={() => updateParams('subject', s)}
               >
                 {s}
               </button>
@@ -48,8 +98,8 @@ function Tests() {
             {YEARS.map(y => (
               <button
                 key={y}
-                className={`filter-btn ${activeYear === y ? 'active' : ''}`}
-                onClick={() => setActiveYear(y)}
+                className={`filter-btn ${yearQuery === y ? 'active' : ''}`}
+                onClick={() => updateParams('year', y)}
               >
                 {y}
               </button>
@@ -62,8 +112,8 @@ function Tests() {
             type="text"
             className="exams-search"
             placeholder="🔍 Шалгалт хайх..."
-            value={search}
-            onChange={e => setSearch(e.target.value)}
+            value={searchQuery}
+            onChange={e => updateParams('search', e.target.value)}
           />
 
           {filtered.length === 0 ? (
