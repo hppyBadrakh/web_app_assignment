@@ -1,65 +1,57 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/cards/ProductCard'
-import initialCompetitions from '../data/competitions.json' // JSON импортлох
 
-// Тэмцээний Class зохиомж
-class CompetitionItem {
-  constructor(obj) {
-    this.id = obj.id;
-    this.icon = obj.icon;
-    this.iconClass = obj.iconClass;
-    this.title = obj.title;
-    this.date = obj.date;
-    this.status = obj.status; // 'upcoming' эсвэл 'past'
-    this.participants = obj.participants;
-    this.prize = obj.prize;
-    this.subject = obj.subject;
-    this.price = obj.price;
-    this.likes = obj.likes || 0;
-    this.reviews = obj.reviews || [];
-  }
-}
-
-const SUBJECTS = ['Бүгд', 'Математик', 'Мэдээлэл зүй', 'Физик', 'Хими', 'Англи хэл']
+const SUBJECTS = ['Бүгд', 'Математик', 'Мэдээлэл зүй', 'Физик', 'Хими', 'Англи хэл', 'Монгол хэл']
 const STATUSES = [
-  { label: 'Бүгд', value: 'All' },
+  { label: 'Бүгд',         value: 'All'      },
   { label: 'Удахгүй болох', value: 'upcoming' },
-  { label: 'Өнгөрсөн', value: 'past' }
+  { label: 'Өнгөрсөн',     value: 'past'     },
 ]
+const PAGE_SIZE = 6
 
 function Competitions() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [competitions, setCompetitions] = useState([])
+  const [total, setTotal] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // 1. Component LifeCycle: Ачааллах үед датаг Class руу хөрвүүлж state-д хадгалах
-  useEffect(() => {
-    const loadData = async () => {
-      setLoading(true)
-      const formattedData = initialCompetitions.map(item => new CompetitionItem(item))
-      setCompetitions(formattedData)
-      setLoading(false)
-    }
-    loadData()
-  }, [])
-
-  // 2. URL-аас шүүлтүүрийн параметрүүд унших
   const searchQuery = searchParams.get('search') || ''
   const subjectQuery = searchParams.get('subject') || 'Бүгд'
   const statusQuery = searchParams.get('status') || 'All'
+  const page = parseInt(searchParams.get('page') || '1', 10)
 
-  // 3. Өгөгдөл шүүх (useMemo ашиглан шаардлагагүй render-ээс сэргийлэх)
-  const filtered = useMemo(() => {
-    return competitions.filter(c => {
-      const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchSubject = subjectQuery === 'Бүгд' || c.subject === subjectQuery
-      const matchStatus = statusQuery === 'All' || c.status === statusQuery
-      return matchSearch && matchSubject && matchStatus
-    })
-  }, [competitions, searchQuery, subjectQuery, statusQuery])
+  useEffect(() => {
+    const controller = new AbortController()
 
-  // 4. URL шинэчлэх функц
+    const fetchCompetitions = async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        const params = new URLSearchParams({ page, limit: PAGE_SIZE })
+        if (searchQuery) params.set('search', searchQuery)
+        if (subjectQuery !== 'Бүгд') params.set('subject', subjectQuery)
+        if (statusQuery !== 'All') params.set('status', statusQuery)
+
+        const res = await fetch(`/api/competitions?${params}`, { signal: controller.signal })
+        if (!res.ok) throw new Error(`Server error: ${res.status}`)
+        const json = await res.json()
+        setCompetitions(json.data)
+        setTotal(json.total)
+        setTotalPages(json.totalPages)
+      } catch (err) {
+        if (err.name !== 'AbortError') setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchCompetitions()
+    return () => controller.abort()
+  }, [searchQuery, subjectQuery, statusQuery, page])
+
   const updateParams = (key, value) => {
     setSearchParams(prev => {
       if (value && value !== 'Бүгд' && value !== 'All') {
@@ -67,11 +59,17 @@ function Competitions() {
       } else {
         prev.delete(key)
       }
+      prev.delete('page')
       return prev
     })
   }
 
-  if (loading) return <div className="container" style={{ padding: '100px', textAlign: 'center' }}>Уншиж байна...</div>
+  const setPage = (p) => {
+    setSearchParams(prev => {
+      prev.set('page', String(p))
+      return prev
+    })
+  }
 
   return (
     <main>
@@ -120,15 +118,66 @@ function Competitions() {
             onChange={e => updateParams('search', e.target.value)}
           />
 
-          {filtered.length === 0 ? (
+          {loading && (
+            <div style={{ textAlign: 'center', padding: '60px' }}>Уншиж байна...</div>
+          )}
+
+          {error && (
+            <div style={{ textAlign: 'center', padding: '60px', color: '#c00' }}>
+              <p>Алдаа гарлаа: {error}</p>
+              <p style={{ fontSize: '0.85rem', marginTop: '8px' }}>Сервер ажиллаж байгаа эсэхийг шалгана уу.</p>
+            </div>
+          )}
+
+          {!loading && !error && competitions.length === 0 && (
             <div style={{ textAlign: 'center', padding: '60px', color: '#666' }}>
               <div style={{ fontSize: '3rem', marginBottom: '12px' }}>🔍</div>
               <p style={{ fontWeight: 700 }}>Тэмцээн олдсонгүй</p>
             </div>
-          ) : (
-            <div className="exam-grid">
-              {filtered.map(comp => <ProductCard key={comp.id} competition={comp} />)}
-            </div>
+          )}
+
+          {!loading && !error && competitions.length > 0 && (
+            <>
+              <p style={{ marginBottom: '12px', color: '#666', fontSize: '0.9rem' }}>
+                Нийт {total} тэмцээн олдлоо
+              </p>
+              <div className="exam-grid">
+                {competitions.map(comp => <ProductCard key={comp.id} competition={comp} />)}
+              </div>
+
+              {totalPages > 1 && (
+                <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginTop: '32px', flexWrap: 'wrap' }}>
+                  <button
+                    className="btn-brutal white-btn"
+                    style={{ padding: '6px 14px' }}
+                    disabled={page <= 1}
+                    onClick={() => setPage(page - 1)}
+                  >
+                    ← Өмнөх
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+                    <button
+                      key={p}
+                      className={`btn-brutal ${p === page ? 'green-btn' : 'white-btn'}`}
+                      style={{ padding: '6px 14px', minWidth: '40px' }}
+                      onClick={() => setPage(p)}
+                    >
+                      {p}
+                    </button>
+                  ))}
+
+                  <button
+                    className="btn-brutal white-btn"
+                    style={{ padding: '6px 14px' }}
+                    disabled={page >= totalPages}
+                    onClick={() => setPage(page + 1)}
+                  >
+                    Дараах →
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

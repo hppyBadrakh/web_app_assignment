@@ -1,61 +1,53 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ExamCard from '../components/cards/ExamCard'
-import initialExams from '../data/exams.json'
-
-// Бараа/Тестийн Class зохиомж
-class ExamItem {
-  constructor(obj) {
-    this.id = obj.id;
-    this.icon = obj.icon;
-    this.iconColor = obj.iconColor;
-    this.name = obj.name;
-    this.price = obj.price;
-    this.subject = obj.subject;
-    this.year = obj.year;
-    this.questions = obj.questions;
-    this.duration = obj.duration;
-    this.difficulty = obj.difficulty;
-  }
-}
 
 const SUBJECTS = ['Бүгд', 'Математик', 'Монгол хэл', 'Физик', 'Хими', 'Биологи', 'Англи хэл', 'Түүх']
-const YEARS = ['Бүгд', '2024', '2023', '2022']
+const YEARS = ['Бүгд', '2025', '2024', '2023', '2022']
+const PAGE_SIZE = 6
 
 function Tests() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [exams, setExams] = useState([])
+  const [total, setTotal] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // 1. Датаг Class хэлбэрт оруулан "татаж" авах (Mock fetch)
-  useEffect(() => {
-    // Сүлжээнээс татаж байгаа мэтээр дуурайлгах
-    const fetchData = async () => {
-      setLoading(true)
-      // Бодит fetch хийх бол: const res = await fetch('/data/exams.json'); const initialExams = await res.json();
-      const formattedData = initialExams.map(item => new ExamItem(item))
-      setExams(formattedData)
-      setLoading(false)
-    }
-    fetchData()
-  }, [])
-
-  // 2. URL-аас шүүлтүүрийн утгуудыг унших
   const searchQuery = searchParams.get('search') || ''
   const subjectQuery = searchParams.get('subject') || 'Бүгд'
   const yearQuery = searchParams.get('year') || 'Бүгд'
+  const page = parseInt(searchParams.get('page') || '1', 10)
 
-  // 3. URL-ийн дагуу шүүлт хийх
-  const filtered = useMemo(() => {
-    return exams.filter(e => {
-      const matchSearch = e.name.toLowerCase().includes(searchQuery.toLowerCase())
-      const matchSubject = subjectQuery === 'Бүгд' || e.subject === subjectQuery
-      const matchYear = yearQuery === 'Бүгд' || e.year === yearQuery
-      return matchSearch && matchSubject && matchYear
-    })
-  }, [exams, searchQuery, subjectQuery, yearQuery])
+  useEffect(() => {
+    const controller = new AbortController()
 
-  // 4. URL-ийг шинэчлэх функц
+    const fetchExams = async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        const params = new URLSearchParams({ page, limit: PAGE_SIZE })
+        if (searchQuery) params.set('search', searchQuery)
+        if (subjectQuery !== 'Бүгд') params.set('subject', subjectQuery)
+        if (yearQuery !== 'Бүгд') params.set('year', yearQuery)
+
+        const res = await fetch(`/api/exams?${params}`, { signal: controller.signal })
+        if (!res.ok) throw new Error(`Server error: ${res.status}`)
+        const json = await res.json()
+        setExams(json.data)
+        setTotal(json.total)
+        setTotalPages(json.totalPages)
+      } catch (err) {
+        if (err.name !== 'AbortError') setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchExams()
+    return () => controller.abort()
+  }, [searchQuery, subjectQuery, yearQuery, page])
+
   const updateParams = (key, value) => {
     setSearchParams(prev => {
       if (value && value !== 'Бүгд') {
@@ -63,11 +55,17 @@ function Tests() {
       } else {
         prev.delete(key)
       }
+      prev.delete('page')
       return prev
     })
   }
 
-  if (loading) return <div className="container" style={{padding: '100px', textAlign: 'center'}}>Уншиж байна...</div>
+  const setPage = (p) => {
+    setSearchParams(prev => {
+      prev.set('page', String(p))
+      return prev
+    })
+  }
 
   return (
     <main>
@@ -116,16 +114,67 @@ function Tests() {
             onChange={e => updateParams('search', e.target.value)}
           />
 
-          {filtered.length === 0 ? (
+          {loading && (
+            <div style={{ textAlign: 'center', padding: '60px' }}>Уншиж байна...</div>
+          )}
+
+          {error && (
+            <div style={{ textAlign: 'center', padding: '60px', color: '#c00' }}>
+              <p>Алдаа гарлаа: {error}</p>
+              <p style={{ fontSize: '0.85rem', marginTop: '8px' }}>Сервер ажиллаж байгаа эсэхийг шалгана уу.</p>
+            </div>
+          )}
+
+          {!loading && !error && exams.length === 0 && (
             <div style={{ textAlign: 'center', padding: '60px', color: '#666' }}>
               <div style={{ fontSize: '3rem', marginBottom: '12px' }}>🔍</div>
               <p style={{ fontWeight: 700 }}>Шалгалт олдсонгүй</p>
               <p style={{ fontSize: '0.9rem', marginTop: '8px' }}>Өөр хайлтын үг эсвэл шүүлтүүр ашиглана уу</p>
             </div>
-          ) : (
-            <div className="exam-grid">
-              {filtered.map(exam => <ExamCard key={exam.id} exam={exam} />)}
-            </div>
+          )}
+
+          {!loading && !error && exams.length > 0 && (
+            <>
+              <p style={{ marginBottom: '12px', color: '#666', fontSize: '0.9rem' }}>
+                Нийт {total} шалгалт олдлоо
+              </p>
+              <div className="exam-grid">
+                {exams.map(exam => <ExamCard key={exam.id} exam={exam} />)}
+              </div>
+
+              {totalPages > 1 && (
+                <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginTop: '32px', flexWrap: 'wrap' }}>
+                  <button
+                    className="btn-brutal white-btn"
+                    style={{ padding: '6px 14px' }}
+                    disabled={page <= 1}
+                    onClick={() => setPage(page - 1)}
+                  >
+                    ← Өмнөх
+                  </button>
+
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+                    <button
+                      key={p}
+                      className={`btn-brutal ${p === page ? 'green-btn' : 'white-btn'}`}
+                      style={{ padding: '6px 14px', minWidth: '40px' }}
+                      onClick={() => setPage(p)}
+                    >
+                      {p}
+                    </button>
+                  ))}
+
+                  <button
+                    className="btn-brutal white-btn"
+                    style={{ padding: '6px 14px' }}
+                    disabled={page >= totalPages}
+                    onClick={() => setPage(page + 1)}
+                  >
+                    Дараах →
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
