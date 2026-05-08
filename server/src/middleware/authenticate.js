@@ -1,6 +1,10 @@
-import { verifySession } from '../../helpers/session.js'
+//ene maan request iig valid auth token esehiig shalgana
+// herev valid bol auth hiisen user info-g req.user-d hiine
+// valid bish bol 401 status code-g butsaana
 
-// Authorization: Bearer <token> header-аас токен уншиж хэрэглэгчийг шалгана
+import { verifySession } from '../../helpers/session.js' // verify session geh helper function-g import hiine
+
+// Authorization: Bearer <token> header aas token unshij user iig shalgana
 export function authenticate(req, res, next) {
   const authHeader = req.headers['authorization'] || ''
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
@@ -19,7 +23,7 @@ export function authenticate(req, res, next) {
   next()
 }
 
-// admin эсвэл мөрийн эзэмшигч бол true буцаана
+// admin esvel row iin exen bol true butsaana
 export function canModify(row, user) {
   if (user.role === 'admin') return true
   return row.created_by === user.id

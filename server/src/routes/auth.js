@@ -9,6 +9,11 @@ const router = Router()
 
 // POST /api/auth/signup
 router.post('/signup', async (req, res) => {
+  //req ni user ees irj bui request
+  //res ni server iin hariulj bui response
+  //body ni request iin baga heseg, json format iin data aguulna
+  //username, email, password-g body-s unshina
+  //.param ni route iin parameter, .query ni query string, .body ni request body-s unshina
   const { username, email, password } = req.body
 
   if (!username || !email || !password)
