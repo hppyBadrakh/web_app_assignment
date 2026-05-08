@@ -16,7 +16,6 @@ import Signup from './pages/Signup'
 
 function App() {
   return (
-    // AuthProvider wraps everything so every page and component can call useAuth()
     <AuthProvider>
       <HashRouter>
         <Navbar />
