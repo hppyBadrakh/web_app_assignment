@@ -1,26 +1,39 @@
-import { queryAll, queryOne, runSql } from '../db/database.js'
+import { queryAll, queryOne, runSql } from '../src/db/database.js'
 
-const MAX_ATTEMPTS = 5
+const MAX_ATTEMPTS   = 5
 const LOCKOUT_MINUTES = 15
 
-/**
- * Check if user is locked out
- */
+// SQLite огноог "YYYY-MM-DD HH:MM:SS" форматаар хадгалдаг (T, Z, миллисекунд байхгүй).
+// JavaScript-ийн toISOString() нь "YYYY-MM-DDTHH:MM:SS.mmmZ" өгдөг бөгөөд
+// SQL query-д SQLite огноотой зөв харьцуулагддаггүй.
+// Энэ тусламж функц JS Date-г SQLite форматруу хөрвүүлдэг тул харьцуулалт зөв ажиллана.
+function toSqliteDate(date) {
+  return date.toISOString().replace('T', ' ').split('.')[0]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// isLockedOut(username)
+// Энэ хэрэглэгчийн нэр сүүлд хэт олон амжилтгүй нэвтрэх оролдлоготой байсан бол true буцаана.
+// ─────────────────────────────────────────────────────────────────────────────
 export function isLockedOut(username) {
-  const lockoutTime = new Date(Date.now() - LOCKOUT_MINUTES * 60 * 1000).toISOString()
-  
+  // Хаалтын цонхны эхлэлийг тооцно (15 минутын өмнө)
+  const windowStart = toSqliteDate(new Date(Date.now() - LOCKOUT_MINUTES * 60 * 1000))
+
+  // Тэр цагийн ДАРАА хэдэн амжилтгүй оролдлого болсныг тоолно
   const recentFailures = queryOne(
-    `SELECT COUNT(*) as count FROM login_attempts 
+    `SELECT COUNT(*) as count FROM login_attempts
      WHERE username = ? AND success = 0 AND attempted_at > ?`,
-    [username, lockoutTime]
+    [username, windowStart]
   )
 
+  // Тоо хязгаарт хүрвэл хэрэглэгчийг хаана
   return recentFailures.count >= MAX_ATTEMPTS
 }
 
-/**
- * Record login attempt
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// recordLoginAttempt(username, success, ipAddress)
+// Нэг нэвтрэх оролдлогыг мэдээллийн санд хадгална (амжилттай эсвэл амжилтгүй).
+// ─────────────────────────────────────────────────────────────────────────────
 export function recordLoginAttempt(username, success, ipAddress = null) {
   runSql(
     'INSERT INTO login_attempts (username, ip_address, success) VALUES (?, ?, ?)',
@@ -28,19 +41,20 @@ export function recordLoginAttempt(username, success, ipAddress = null) {
   )
 }
 
-/**
- * Get remaining attempts
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// getRemainingAttempts(username)
+// Хэрэглэгч хаагдахын өмнө хэдэн амжилтгүй оролдлого үлдсэнийг буцаана.
+// ─────────────────────────────────────────────────────────────────────────────
 export function getRemainingAttempts(username) {
   if (isLockedOut(username)) return 0
 
-  const lockoutTime = new Date(Date.now() - LOCKOUT_MINUTES * 60 * 1000).toISOString()
-  
-  const attempts = queryAll(
-    `SELECT COUNT(*) as count FROM login_attempts 
+  const windowStart = toSqliteDate(new Date(Date.now() - LOCKOUT_MINUTES * 60 * 1000))
+
+  const result = queryOne(
+    `SELECT COUNT(*) as count FROM login_attempts
      WHERE username = ? AND success = 0 AND attempted_at > ?`,
-    [username, lockoutTime]
+    [username, windowStart]
   )
 
-  return Math.max(0, MAX_ATTEMPTS - (attempts[0]?.count || 0))
+  return Math.max(0, MAX_ATTEMPTS - (result?.count || 0))
 }

@@ -3,10 +3,6 @@ import crypto from 'crypto';
 
 const SECRET_KEY = process.env.PASSWORD_SECRET_KEY || 'default-secret-key-change-in-production'
 
-/**
- * Validate password strength
- * Requirements: min 8 chars, uppercase, lowercase, number, special char
- */
 export function validatePasswordStrength(password) {
   const errors = []
 
@@ -33,7 +29,7 @@ export function validatePasswordStrength(password) {
 }
 
 /**
- * Hash password with HMAC + salt
+ * HMAC + давс ашиглан нууц үгийг hash хийнэ
  */
 export async function hashPassword(password) {
     const saltRounds = 12
@@ -43,7 +39,7 @@ export async function hashPassword(password) {
 }
 
 /**
- * Verify password
+ * Нууц үгийг шалгана
  */
 export async function verifyPassword(password, hash) {
     const pepperedPassword = password + SECRET_KEY;
@@ -51,7 +47,7 @@ export async function verifyPassword(password, hash) {
 }
 
 /**
- * Generate secure random token
+ * Аюулгүй санамсаргүй токен үүсгэнэ
  */
 export function generateToken(length) {
   return crypto.randomBytes(length).toString('hex')

@@ -38,6 +38,55 @@ db.exec(`
   )
 `)
 
+// ── USERS хүснэгт ────────────────────────────────────────────────────────────
+// Хэрэглэгч бүр өвөрмөц хэрэглэгчийн нэр, и-мэйл, нууцлагдсан нууц үг болон дүртэй байна.
+// Дүр (role) нь хэрэглэгч юу хийж болохыг тодорхойлдог (жишээ нь "user" vs "admin").
+db.exec(`
+  CREATE TABLE IF NOT EXISTS users (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    username      TEXT    NOT NULL UNIQUE,
+    email         TEXT    NOT NULL UNIQUE,
+    password_hash TEXT    NOT NULL,
+    role          TEXT    NOT NULL DEFAULT 'user',
+    created_at    TEXT    NOT NULL DEFAULT (datetime('now'))
+  )
+`)
+
+// ── SESSIONS хүснэгт ─────────────────────────────────────────────────────────
+// Хэрэглэгч нэвтрэх үед санамсаргүй токентой мөр үүсгэнэ.
+// Frontend нь хүсэлт бүрт тэр токеныг илгээдэг тул хэн холбогдож байгааг мэдэж авна.
+// Хэрэглэгч гарах үед тэр мөрийг устгана.
+db.exec(`
+  CREATE TABLE IF NOT EXISTS sessions (
+    id         INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token      TEXT    NOT NULL UNIQUE,
+    expires_at TEXT    NOT NULL,
+    created_at TEXT    NOT NULL DEFAULT (datetime('now'))
+  )
+`)
+
+// ── LOGIN ATTEMPTS хүснэгт ───────────────────────────────────────────────────
+// Нэвтрэх оролдлого бүрийг (амжилттай эсвэл амжилтгүй) энд хадгална.
+// Богино хугацаанд хэт олон амжилтгүй оролдлого гарвал цаашид нэвтрэхийг хаана
+// нууц үгийг таах (brute-force) халдлагаас хамгаалахын тулд.
+db.exec(`
+  CREATE TABLE IF NOT EXISTS login_attempts (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    username     TEXT    NOT NULL,
+    ip_address   TEXT,
+    success      INTEGER NOT NULL DEFAULT 0,
+    attempted_at TEXT    NOT NULL DEFAULT (datetime('now'))
+  )
+`)
+
+// ── БАЙГАА ХҮСНЭГТҮҮДЭД created_by НЭМНЭ ───────────────────────────────────
+// Шалгалт / тэмцээн бүрийг хэн үүсгэсэнийг хадгалдаг тул
+// "зөвхөн эзэмшигч нь өөрийн өгөгдлийг засаж устгаж болно" гэсэн дүрмийг хэрэгжүүлнэ.
+// Багана аль хэдийн байгаа бол ALTER TABLE чимээгүй алдаатай дуусна — энэ нь зориудаар хийсэн.
+try { db.exec('ALTER TABLE exams        ADD COLUMN created_by INTEGER REFERENCES users(id)') } catch (_) {}
+try { db.exec('ALTER TABLE competitions ADD COLUMN created_by INTEGER REFERENCES users(id)') } catch (_) {}
+
 export function save() {}
 
 export function queryOne(sql, params = []) {

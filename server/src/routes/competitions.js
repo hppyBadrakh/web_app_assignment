@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { queryOne, queryAll, runSql } from '../db/database.js'
+import { authenticate, canModify } from '../middleware/authenticate.js'
 
 const router = Router()
 
@@ -16,10 +17,11 @@ function toDto(row) {
     subject: row.subject,
     price: row.price,
     likes: row.likes,
+    createdBy: row.created_by ?? null,
   }
 }
 
-// GET /api/competitions?search=&subject=&status=&page=1&limit=6
+// GET /api/competitions  — нийтийн
 router.get('/', (req, res) => {
   const { search = '', subject, status, page = '1', limit = '6' } = req.query
   const pageNum = Math.max(1, parseInt(page, 10) || 1)
@@ -47,15 +49,15 @@ router.get('/', (req, res) => {
   })
 })
 
-// GET /api/competitions/:id
+// GET /api/competitions/:id  — нийтийн
 router.get('/:id', (req, res) => {
   const row = queryOne('SELECT * FROM competitions WHERE id = ?', [Number(req.params.id)])
   if (!row) return res.status(404).json({ error: 'Competition not found' })
   res.json(toDto(row))
 })
 
-// POST /api/competitions
-router.post('/', (req, res) => {
+// POST /api/competitions  — нэвтэрсэн байх шаардлагатай
+router.post('/', authenticate, (req, res) => {
   const { icon, iconClass, title, date, status, participants, prize, subject, price, likes } = req.body
 
   if (!title || !date || !subject) {
@@ -63,19 +65,23 @@ router.post('/', (req, res) => {
   }
 
   const newId = runSql(
-    'INSERT INTO competitions (icon, icon_class, title, date, status, participants, prize, subject, price, likes) VALUES (?,?,?,?,?,?,?,?,?,?)',
-    [icon || '🏆', iconClass || 'icon-gold', title, date, status || 'upcoming', Number(participants) || 0, prize || '₮0', subject, Number(price) || 0, Number(likes) || 0],
+    'INSERT INTO competitions (icon, icon_class, title, date, status, participants, prize, subject, price, likes, created_by) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+    [icon || '🏆', iconClass || 'icon-gold', title, date, status || 'upcoming', Number(participants) || 0, prize || '₮0', subject, Number(price) || 0, Number(likes) || 0, req.user.id],
   )
 
   const created = queryOne('SELECT * FROM competitions WHERE id = ?', [newId])
   res.status(201).json(toDto(created))
 })
 
-// PUT /api/competitions/:id
-router.put('/:id', (req, res) => {
+// PUT /api/competitions/:id  — нэвтэрсэн байх ба эзэмшигч (эсвэл admin) байх шаардлагатай
+router.put('/:id', authenticate, (req, res) => {
   const id = Number(req.params.id)
   const existing = queryOne('SELECT * FROM competitions WHERE id = ?', [id])
   if (!existing) return res.status(404).json({ error: 'Competition not found' })
+
+  if (!canModify(existing, req.user)) {
+    return res.status(403).json({ error: 'Та энэ тэмцээнийг засах эрхгүй байна' }) // "You are not allowed to edit this competition"
+  }
 
   const { icon, iconClass, title, date, status, participants, prize, subject, price, likes } = req.body
 
@@ -100,11 +106,15 @@ router.put('/:id', (req, res) => {
   res.json(toDto(updated))
 })
 
-// DELETE /api/competitions/:id
-router.delete('/:id', (req, res) => {
+// DELETE /api/competitions/:id  — нэвтэрсэн байх ба эзэмшигч (эсвэл admin) байх шаардлагатай
+router.delete('/:id', authenticate, (req, res) => {
   const id = Number(req.params.id)
   const existing = queryOne('SELECT * FROM competitions WHERE id = ?', [id])
   if (!existing) return res.status(404).json({ error: 'Competition not found' })
+
+  if (!canModify(existing, req.user)) {
+    return res.status(403).json({ error: 'Та энэ тэмцээнийг устгах эрхгүй байна' }) // "You are not allowed to delete this competition"
+  }
 
   runSql('DELETE FROM competitions WHERE id = ?', [id])
   res.status(204).send()

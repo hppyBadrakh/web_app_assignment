@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { queryOne, queryAll, runSql } from '../db/database.js'
+import { authenticate, canModify } from '../middleware/authenticate.js'
 
 const router = Router()
 
@@ -15,10 +16,11 @@ function toDto(row) {
     questions: row.questions,
     duration: row.duration,
     difficulty: row.difficulty,
+    createdBy: row.created_by ?? null,
   }
 }
 
-// GET /api/exams?search=&subject=&year=&page=1&limit=6
+// GET /api/exams  — нийтийн, хэн ч шалгалтуудыг харж болно
 router.get('/', (req, res) => {
   const { search = '', subject, year, page = '1', limit = '6' } = req.query
   const pageNum = Math.max(1, parseInt(page, 10) || 1)
@@ -46,15 +48,16 @@ router.get('/', (req, res) => {
   })
 })
 
-// GET /api/exams/:id
+// GET /api/exams/:id  — нийтийн
 router.get('/:id', (req, res) => {
   const row = queryOne('SELECT * FROM exams WHERE id = ?', [Number(req.params.id)])
   if (!row) return res.status(404).json({ error: 'Exam not found' })
   res.json(toDto(row))
 })
 
-// POST /api/exams
-router.post('/', (req, res) => {
+// POST /api/exams  — нэвтэрсэн байх шаардлагатай
+// `authenticate` middleware эхэлж ажиллана; амжилтгүй болбол route handler огт ажиллахгүй.
+router.post('/', authenticate, (req, res) => {
   const { icon, iconColor, name, price, subject, year, questions, duration, difficulty } = req.body
 
   if (!name || !subject || !year) {
@@ -62,19 +65,24 @@ router.post('/', (req, res) => {
   }
 
   const newId = runSql(
-    'INSERT INTO exams (icon, icon_color, name, price, subject, year, questions, duration, difficulty) VALUES (?,?,?,?,?,?,?,?,?)',
-    [icon || '📝', iconColor || 'icon-blue', name, price || 'Үнэгүй', subject, String(year), Number(questions) || 0, duration || '60 мин', difficulty || 'Дунд'],
+    'INSERT INTO exams (icon, icon_color, name, price, subject, year, questions, duration, difficulty, created_by) VALUES (?,?,?,?,?,?,?,?,?,?)',
+    [icon || '📝', iconColor || 'icon-blue', name, price || 'Үнэгүй', subject, String(year), Number(questions) || 0, duration || '60 мин', difficulty || 'Дунд', req.user.id],
   )
 
   const created = queryOne('SELECT * FROM exams WHERE id = ?', [newId])
   res.status(201).json(toDto(created))
 })
 
-// PUT /api/exams/:id
-router.put('/:id', (req, res) => {
+// PUT /api/exams/:id  — нэвтэрсэн байх ба эзэмшигч (эсвэл admin) байх шаардлагатай
+router.put('/:id', authenticate, (req, res) => {
   const id = Number(req.params.id)
   const existing = queryOne('SELECT * FROM exams WHERE id = ?', [id])
   if (!existing) return res.status(404).json({ error: 'Exam not found' })
+
+  // Эзэмшлийн шалгалт — хэрэглэгч энэ мөрийг эзэмшдэггүй бол canModify false буцаана
+  if (!canModify(existing, req.user)) {
+    return res.status(403).json({ error: 'Та энэ шалгалтыг засах эрхгүй байна' }) // "You are not allowed to edit this exam"
+  }
 
   const { icon, iconColor, name, price, subject, year, questions, duration, difficulty } = req.body
 
@@ -98,11 +106,15 @@ router.put('/:id', (req, res) => {
   res.json(toDto(updated))
 })
 
-// DELETE /api/exams/:id
-router.delete('/:id', (req, res) => {
+// DELETE /api/exams/:id  — нэвтэрсэн байх ба эзэмшигч (эсвэл admin) байх шаардлагатай
+router.delete('/:id', authenticate, (req, res) => {
   const id = Number(req.params.id)
   const existing = queryOne('SELECT * FROM exams WHERE id = ?', [id])
   if (!existing) return res.status(404).json({ error: 'Exam not found' })
+
+  if (!canModify(existing, req.user)) {
+    return res.status(403).json({ error: 'Та энэ шалгалтыг устгах эрхгүй байна' }) // "You are not allowed to delete this exam"
+  }
 
   runSql('DELETE FROM exams WHERE id = ?', [id])
   res.status(204).send()
