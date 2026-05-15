@@ -5,6 +5,7 @@ import './db/seed.js'
 import examRoutes from './routes/exams.js'
 import competitionRoutes from './routes/competitions.js'
 import authRoutes from './routes/auth.js'
+import adminRoutes from './routes/admin.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -14,6 +15,7 @@ app.use(express.json())
 
 // Auth routes — no login required to reach these
 app.use('/api/auth', authRoutes)
+app.use('/api/admin', adminRoutes)
 
 app.use('/api/exams', examRoutes)
 app.use('/api/competitions', competitionRoutes)
