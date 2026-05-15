@@ -23,6 +23,14 @@ export function authenticate(req, res, next) {
   next()
 }
 
+export function requireAdmin(req, res, next) {
+  authenticate(req, res, () => {
+    if (req.user.role !== 'admin')
+      return res.status(403).json({ error: 'Admin access required' })
+    next()
+  })
+}
+
 // admin esvel row iin exen bol true butsaana
 export function canModify(row, user) {
   if (user.role === 'admin') return true
