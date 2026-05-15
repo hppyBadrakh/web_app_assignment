@@ -12,8 +12,6 @@ export default function AdminLogin() {
   const navigate       = useNavigate()
   const { adminLogin } = useAdminAuth()
 
-  const [username,  setUsername]  = useState('')
-  const [password,  setPassword]  = useState('')
   const [adminCode, setAdminCode] = useState('')
   const [error,     setError]     = useState('')
   const [loading,   setLoading]   = useState(false)
@@ -26,7 +24,7 @@ export default function AdminLogin() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, adminCode }),
+        body: JSON.stringify({ adminCode }),
       })
       const data = await res.json()
       if (!res.ok) { setError(data.error || 'Login failed'); return }
@@ -55,20 +53,10 @@ export default function AdminLogin() {
         )}
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: 20 }}>
-            <label style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>Username</label>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)}
-              placeholder="admin username" required style={inputStyle} />
-          </div>
-          <div style={{ marginBottom: 20 }}>
-            <label style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>Password</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)}
-              placeholder="••••••••" required style={inputStyle} />
-          </div>
           <div style={{ marginBottom: 28 }}>
             <label style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>Admin Code</label>
             <input type="password" value={adminCode} onChange={e => setAdminCode(e.target.value)}
-              placeholder="Secret admin code" required style={inputStyle} />
+              placeholder="Enter admin code" required style={inputStyle} />
           </div>
           <button type="submit" disabled={loading} className="btn-brutal"
             style={{ width: '100%', background: '#1a1a1a', color: '#fff', opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>

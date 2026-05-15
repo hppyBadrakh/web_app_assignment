@@ -1,29 +1,25 @@
 import { Router } from 'express'
 import { queryOne, queryAll, runSql } from '../db/database.js'
-import { verifyPassword } from '../../helpers/password.js'
 import { createSession, destroySession } from '../../helpers/session.js'
 import { authenticate, requireAdmin } from '../middleware/authenticate.js'
 
 const router = Router()
 
-// POST /api/admin/login — username + password + adminCode
-router.post('/login', async (req, res) => {
-  const { username, password, adminCode } = req.body
-  if (!username || !password || !adminCode)
-    return res.status(400).json({ error: 'All fields are required' })
-
-  const user = queryOne('SELECT * FROM users WHERE username = ?', [username])
-  if (!user || !(await verifyPassword(password, user.password_hash)))
-    return res.status(401).json({ error: 'Invalid credentials' })
-
-  if (user.role !== 'admin')
-    return res.status(403).json({ error: 'Not an admin account' })
+// POST /api/admin/login — adminCode only
+router.post('/login', (req, res) => {
+  const { adminCode } = req.body
+  if (!adminCode)
+    return res.status(400).json({ error: 'Admin code is required' })
 
   if (adminCode !== process.env.ADMIN_SECRET_CODE)
     return res.status(403).json({ error: 'Invalid admin code' })
 
-  const token = createSession(user.id)
-  res.json({ token, user: { id: user.id, username: user.username, email: user.email, role: user.role } })
+  const admin = queryOne("SELECT * FROM users WHERE role = 'admin' ORDER BY id LIMIT 1")
+  if (!admin)
+    return res.status(500).json({ error: 'No admin account found in database' })
+
+  const token = createSession(admin.id)
+  res.json({ token, user: { id: admin.id, username: admin.username, email: admin.email, role: admin.role } })
 })
 
 // GET /api/admin/me — validate token and return user
