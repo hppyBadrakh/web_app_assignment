@@ -3,7 +3,9 @@ import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DB_PATH = join(__dirname, '../../testhub.db')
+const DB_PATH = process.env.TEST_DB
+  ? process.env.TEST_DB
+  : join(__dirname, '../../testhub.db')
 
 const db = new Database(DB_PATH)
 
@@ -45,12 +47,14 @@ db.exec(`
     email         TEXT    NOT NULL UNIQUE,
     password_hash TEXT    NOT NULL,
     role          TEXT    NOT NULL DEFAULT 'user',
+    avatar_url    TEXT,
     created_at    TEXT    NOT NULL DEFAULT (datetime('now'))
   )
 `)
 
+// Legacy token-based sessions — kept for admin Bearer-token auth
 db.exec(`
-  CREATE TABLE IF NOT EXISTS sessions (
+  CREATE TABLE IF NOT EXISTS token_sessions (
     id         INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     token      TEXT    NOT NULL UNIQUE,
@@ -69,12 +73,13 @@ db.exec(`
   )
 `)
 
-// ── БАЙГАА ХҮСНЭГТҮҮДЭД created_by НЭМНЭ ───────────────────────────────────
-// Шалгалт / тэмцээн бүрийг хэн үүсгэсэнийг хадгалдаг тул
-// "зөвхөн эзэмшигч нь өөрийн өгөгдлийг засаж устгаж болно" гэсэн дүрмийг хэрэгжүүлнэ.
-// Багана аль хэдийн байгаа бол ALTER TABLE чимээгүй алдаатай дуусна — энэ нь зориудаар хийсэн.
+// Rename legacy sessions table if it still exists under the old name
+try { db.exec('ALTER TABLE sessions RENAME TO token_sessions') } catch (_) {}
+
+// Add new columns if upgrading an existing database
 try { db.exec('ALTER TABLE exams        ADD COLUMN created_by INTEGER REFERENCES users(id)') } catch (_) {}
 try { db.exec('ALTER TABLE competitions ADD COLUMN created_by INTEGER REFERENCES users(id)') } catch (_) {}
+try { db.exec('ALTER TABLE users        ADD COLUMN avatar_url TEXT') } catch (_) {}
 
 export function save() {}
 
