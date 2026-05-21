@@ -26,6 +26,7 @@ function Signup() {
     try {
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
       })
@@ -40,7 +41,7 @@ function Signup() {
       }
 
       // Бүртгэл амжилттай — хэрэглэгчийг шууд нэвтрүүлнэ
-      login(data.token, data.user)
+      login(data.user)
       navigate('/')
     } catch {
       setErrors(['Сервертэй холбогдож чадсангүй'])

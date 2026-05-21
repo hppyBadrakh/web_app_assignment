@@ -25,6 +25,7 @@ function Login() {
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       })
@@ -42,7 +43,7 @@ function Login() {
       }
 
       // Нэвтрэлт амжилттай — токеныг хадгалаад нүүр хуудсруу шилжинэ
-      login(data.token, data.user)
+      login(data.user)
       navigate('/')
     } catch {
       setError('Сервертэй холбогдож чадсангүй')
