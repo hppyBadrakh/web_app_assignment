@@ -49,6 +49,8 @@ app.get('/api/health', (_req, res) => res.json({ status: 'ok' }))
 
 app.use((_req, res) => res.status(404).json({ error: 'Not found' }))
 
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
+}
 
 export default app
