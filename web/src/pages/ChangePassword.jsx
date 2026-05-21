@@ -58,8 +58,9 @@ function ChangePassword() {
               { name: 'confirm', label: 'Нууц үг давтах', placeholder: 'Шинэ нууц үгийг давтах' },
             ].map(field => (
               <div key={field.name}>
-                <label style={{ display: 'block', fontWeight: 800, marginBottom: '8px' }}>{field.label}</label>
+                <label htmlFor={`cp-${field.name}`} style={{ display: 'block', fontWeight: 800, marginBottom: '8px' }}>{field.label}</label>
                 <input
+                  id={`cp-${field.name}`}
                   type="password"
                   name={field.name}
                   value={form[field.name]}

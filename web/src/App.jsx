@@ -42,6 +42,7 @@ function AppShell() {
   return (
     <>
       {!isAdmin && <Navbar />}
+      <div role="status" aria-live="polite" className="sr-only" id="live-region" />
       <Routes>
         {/* Public routes */}
         <Route path="/"             element={<Home />} />

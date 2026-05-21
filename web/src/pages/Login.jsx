@@ -65,7 +65,7 @@ function Login() {
 
         {/* Алдааны хайрцаг — зөвхөн алдаа гарахад харагдана */}
         {error && (
-          <div style={{ background: '#fee2e2', border: '2px solid #ef4444', borderRadius: 12, padding: '12px 16px', marginBottom: 20, fontWeight: 700, color: '#dc2626' }}>
+          <div role="alert" style={{ background: '#fee2e2', border: '2px solid #ef4444', borderRadius: 12, padding: '12px 16px', marginBottom: 20, fontWeight: 700, color: '#dc2626' }}>
             {error}
           </div>
         )}
@@ -73,10 +73,11 @@ function Login() {
         <form onSubmit={handleSubmit}>
           {/* Хэрэглэгчийн нэрийн талбар */}
           <div style={{ marginBottom: 20 }}>
-            <label style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>
+            <label htmlFor="login-username" style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>
               Хэрэглэгчийн нэр
             </label>
             <input
+              id="login-username"
               type="text"
               value={username}
               onChange={e => setUsername(e.target.value)}
@@ -88,10 +89,11 @@ function Login() {
 
           {/* Нууц үгийн талбар */}
           <div style={{ marginBottom: 28 }}>
-            <label style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>
+            <label htmlFor="login-password" style={{ fontWeight: 800, display: 'block', marginBottom: 6 }}>
               Нууц үг
             </label>
             <input
+              id="login-password"
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
