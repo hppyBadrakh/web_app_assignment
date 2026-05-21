@@ -70,7 +70,7 @@ Replace custom `Authorization: Bearer <token>` flow with `express-session` + htt
 - Read `req.session.userId` instead of `req.headers.authorization`
 - Return `401` with `{ error: 'Unauthorized' }` if missing
 
-**DB:** The existing `sessions` table remains but is unused by express-session. The `better-sqlite3-session-store` creates its own `sessions` table — there will be a name conflict. Resolution: rename existing table to `auth_sessions` in a migration (try/catch ALTER TABLE), or drop and recreate. The store's table will be `sessions`.
+**DB:** The `better-sqlite3-session-store` creates its own `sessions` table by default, which conflicts with the existing custom `sessions` table. Resolution: configure the store with `tableName: 'express_sessions'` to avoid the conflict. The old `sessions` table stays but is unused after migration — no data loss, no migration needed.
 
 **New `.env` variable:** `SESSION_SECRET` — document in `.env.example`.
 
