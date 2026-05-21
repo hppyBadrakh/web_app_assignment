@@ -31,10 +31,13 @@ router.post('/signup', async (req, res) => {
     [username, email, passwordHash, role]
   )
 
-  req.session.userId = newUserId
-  res.status(201).json({
-    message: 'Бүртгэл амжилттай',
-    user: { id: newUserId, username, email, role, avatarUrl: null },
+  req.session.regenerate(err => {
+    if (err) return res.status(500).json({ error: 'Session error' })
+    req.session.userId = newUserId
+    res.status(201).json({
+      message: 'Бүртгэл амжилттай',
+      user: { id: newUserId, username, email, role, avatarUrl: null },
+    })
   })
 })
 
@@ -60,22 +63,28 @@ router.post('/login', async (req, res) => {
   }
 
   recordLoginAttempt(username, true, ip)
-  req.session.userId = user.id
-  res.json({
-    message: 'Амжилттай нэвтэрлээ',
-    user: {
-      id:        user.id,
-      username:  user.username,
-      email:     user.email,
-      role:      user.role,
-      avatarUrl: user.avatar_url || null,
-    },
+  req.session.regenerate(err => {
+    if (err) return res.status(500).json({ error: 'Session error' })
+    req.session.userId = user.id
+    res.json({
+      message: 'Амжилттай нэвтэрлээ',
+      user: {
+        id:        user.id,
+        username:  user.username,
+        email:     user.email,
+        role:      user.role,
+        avatarUrl: user.avatar_url || null,
+      },
+    })
   })
 })
 
 // POST /api/auth/logout
 router.post('/logout', (req, res) => {
-  req.session.destroy(() => res.json({ message: 'Амжилттай гарлаа' }))
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid')
+    res.json({ message: 'Амжилттай гарлаа' })
+  })
 })
 
 // GET /api/auth/me
