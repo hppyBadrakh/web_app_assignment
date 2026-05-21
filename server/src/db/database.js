@@ -52,6 +52,10 @@ db.exec(`
   )
 `)
 
+// Rename legacy sessions table if it still exists under the old name
+// This must happen BEFORE creating the new token_sessions table
+try { db.exec('ALTER TABLE sessions RENAME TO token_sessions') } catch (_) {}
+
 // Legacy token-based sessions — kept for admin Bearer-token auth
 db.exec(`
   CREATE TABLE IF NOT EXISTS token_sessions (
@@ -72,9 +76,6 @@ db.exec(`
     attempted_at TEXT    NOT NULL DEFAULT (datetime('now'))
   )
 `)
-
-// Rename legacy sessions table if it still exists under the old name
-try { db.exec('ALTER TABLE sessions RENAME TO token_sessions') } catch (_) {}
 
 // Add new columns if upgrading an existing database
 try { db.exec('ALTER TABLE exams        ADD COLUMN created_by INTEGER REFERENCES users(id)') } catch (_) {}

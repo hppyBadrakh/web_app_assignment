@@ -5,6 +5,7 @@ export class SqliteSessionStore extends Store {
     super()
     this.db    = db
     this.table = options.tableName || 'express_sessions'
+    if (!/^\w+$/.test(this.table)) throw new Error(`Invalid session store table name: ${this.table}`)
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS ${this.table} (
         sid     TEXT    PRIMARY KEY,
@@ -15,7 +16,7 @@ export class SqliteSessionStore extends Store {
     setInterval(
       () => this.db.prepare(`DELETE FROM ${this.table} WHERE expired < ?`).run(Date.now()),
       15 * 60 * 1000
-    )
+    ).unref()
   }
 
   get(sid, callback) {
@@ -46,6 +47,14 @@ export class SqliteSessionStore extends Store {
   }
 
   touch(sid, session, callback) {
-    this.set(sid, session, callback)
+    try {
+      const expired = session.cookie?.expires
+        ? new Date(session.cookie.expires).getTime()
+        : Date.now() + 24 * 60 * 60 * 1000
+      this.db.prepare(
+        `UPDATE ${this.table} SET expired = ? WHERE sid = ?`
+      ).run(expired, sid)
+      callback(null)
+    } catch (e) { callback(e) }
   }
 }
