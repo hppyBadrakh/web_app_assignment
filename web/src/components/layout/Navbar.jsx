@@ -21,7 +21,11 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar" style={{ position: 'relative' }}>
+    <nav
+      className="navbar"
+      style={{ position: 'relative' }}
+      onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false) }}
+    >
       <div className="container flex-row">
         <Link to="/" className="logo-group" onClick={close}>
           <span className="logo-icon">T</span>
@@ -31,14 +35,17 @@ function Navbar() {
         <button
           className="menu-toggle"
           onClick={() => setMenuOpen(o => !o)}
+          onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMenuOpen(o => !o) } }}
           aria-label="Цэс нээх/хаах"
+          aria-expanded={menuOpen}
+          aria-controls="nav-menu"
         >
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <ul className={`nav-menu ${menuOpen ? 'mobile-open' : ''}`}>
+        <ul id="nav-menu" className={`nav-menu ${menuOpen ? 'mobile-open' : ''}`}>
           <li>
             <Link to="/" className={isActive('/') ? 'btn-active' : ''} onClick={close}>
               Нүүр
@@ -51,10 +58,10 @@ function Navbar() {
           </li>
           <li className="has-drop">
             <span style={{ cursor: 'pointer', fontWeight: 700 }}>Тэмцээн ▾</span>
-            <ul className="drop-menu">
-              <li><Link to="/competitions?status=upcoming" onClick={close}>Удахгүй болох</Link></li>
-              <li><Link to="/competitions?status=past"     onClick={close}>Өнгөрсөн</Link></li>
-              <li><Link to="/competitions"                 onClick={close}>Бүгд</Link></li>
+            <ul className="drop-menu" role="menu">
+              <li role="menuitem"><Link to="/competitions?status=upcoming" onClick={close}>Удахгүй болох</Link></li>
+              <li role="menuitem"><Link to="/competitions?status=past"     onClick={close}>Өнгөрсөн</Link></li>
+              <li role="menuitem"><Link to="/competitions"                 onClick={close}>Бүгд</Link></li>
             </ul>
           </li>
           <li>
@@ -68,29 +75,37 @@ function Navbar() {
             // Нэвтэрсэн — хэрэглэгчийн нэр болон гарах товчтой dropdown харуулна
             <li className="has-drop user-profile">
               <div className="avatar" style={{ cursor: 'pointer', gap: 6, display: 'flex', alignItems: 'center', padding: '0 8px', borderRadius: 20, minWidth: 42 }}>
-                <span>👤</span>
+                {user.avatarUrl ? (
+                  <img
+                    src={user.avatarUrl}
+                    alt="Profile avatar"
+                    style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover', border: '2px solid #1a1a1a' }}
+                  />
+                ) : (
+                  <span>👤</span>
+                )}
                 <span style={{ fontSize: '0.85rem', fontWeight: 800, maxWidth: 80, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {user.username}
                 </span>
               </div>
-              <ul className="drop-menu" style={{ right: 0, left: 'auto' }}>
-                <li>
+              <ul className="drop-menu" role="menu" style={{ right: 0, left: 'auto' }}>
+                <li role="menuitem">
                   <Link to="/profile" onClick={close}>
                     Профайл
                   </Link>
                 </li>
-                <li>
+                <li role="menuitem">
                   <Link to="/change-password" onClick={close}>
                     Нууц үг солих
                   </Link>
                 </li>
                 {/* Админуудад дүрийн тэмдэглэгээ харуулна */}
                 {user.role === 'admin' && (
-                  <li style={{ padding: '8px 20px' }}>
+                  <li role="menuitem" style={{ padding: '8px 20px' }}>
                     <span className="badge green-badge" style={{ fontSize: '0.75rem' }}>Admin</span>
                   </li>
                 )}
-                <li>
+                <li role="menuitem">
                   <button
                     onClick={handleLogout}
                     style={{ width: '100%', textAlign: 'left', padding: '12px 20px', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700, fontSize: '0.9rem', color: '#dc2626' }}
