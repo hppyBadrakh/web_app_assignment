@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { queryOne, queryAll, runSql } from '../db/database.js'
 import { createSession, destroySession } from '../../helpers/session.js'
-import { authenticate, requireAdmin } from '../middleware/authenticate.js'
+import { authenticateBearer, requireAdmin } from '../middleware/authenticate.js'
 
 const router = Router()
 
@@ -70,7 +70,7 @@ router.delete('/users/:id', requireAdmin, (req, res) => {
 })
 
 // POST /api/admin/logout
-router.post('/logout', authenticate, (req, res) => {
+router.post('/logout', authenticateBearer, (req, res) => {
   destroySession(req.headers['authorization'].slice(7))
   res.json({ message: 'Logged out' })
 })

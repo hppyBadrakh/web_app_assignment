@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import { queryOne, runSql } from '../db/database.js'
 import { validatePasswordStrength, hashPassword, verifyPassword } from '../../helpers/password.js'
-import { createSession, destroySession } from '../../helpers/session.js'
 import { isLockedOut, recordLoginAttempt, getRemainingAttempts } from '../../helpers/limit.js'
 import { authenticate } from '../middleware/authenticate.js'
 
@@ -9,11 +8,6 @@ const router = Router()
 
 // POST /api/auth/signup
 router.post('/signup', async (req, res) => {
-  //req ni user ees irj bui request
-  //res ni server iin hariulj bui response
-  //body ni request iin baga heseg, json format iin data aguulna
-  //username, email, password-g body-s unshina
-  //.param ni route iin parameter, .query ni query string, .body ni request body-s unshina
   const { username, email, password } = req.body
 
   if (!username || !email || !password)
@@ -37,8 +31,11 @@ router.post('/signup', async (req, res) => {
     [username, email, passwordHash, role]
   )
 
-  const token = createSession(newUserId)
-  res.status(201).json({ message: 'Бүртгэл амжилттай', token, user: { id: newUserId, username, email, role } })
+  req.session.userId = newUserId
+  res.status(201).json({
+    message: 'Бүртгэл амжилттай',
+    user: { id: newUserId, username, email, role, avatarUrl: null },
+  })
 })
 
 // POST /api/auth/login
@@ -63,14 +60,22 @@ router.post('/login', async (req, res) => {
   }
 
   recordLoginAttempt(username, true, ip)
-  const token = createSession(user.id)
-  res.json({ message: 'Амжилттай нэвтэрлээ', token, user: { id: user.id, username: user.username, email: user.email, role: user.role } })
+  req.session.userId = user.id
+  res.json({
+    message: 'Амжилттай нэвтэрлээ',
+    user: {
+      id:        user.id,
+      username:  user.username,
+      email:     user.email,
+      role:      user.role,
+      avatarUrl: user.avatar_url || null,
+    },
+  })
 })
 
 // POST /api/auth/logout
-router.post('/logout', authenticate, (req, res) => {
-  destroySession(req.headers['authorization'].slice(7))
-  res.json({ message: 'Амжилттай гарлаа' })
+router.post('/logout', (req, res) => {
+  req.session.destroy(() => res.json({ message: 'Амжилттай гарлаа' }))
 })
 
 // GET /api/auth/me

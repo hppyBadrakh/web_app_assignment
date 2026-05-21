@@ -1,11 +1,33 @@
-//ene maan request iig valid auth token esehiig shalgana
-// herev valid bol auth hiisen user info-g req.user-d hiine
-// valid bish bol 401 status code-g butsaana
+import { queryOne } from '../db/database.js'
+import { verifySession } from '../../helpers/session.js'
 
-import { verifySession } from '../../helpers/session.js' // verify session geh helper function-g import hiine
-
-// Authorization: Bearer <token> header aas token unshij user iig shalgana
+// User routes — reads express-session cookie
 export function authenticate(req, res, next) {
+  if (!req.session?.userId)
+    return res.status(401).json({ error: 'Unauthorized' })
+
+  const user = queryOne(
+    'SELECT id, username, email, role, avatar_url FROM users WHERE id = ?',
+    [req.session.userId]
+  )
+
+  if (!user) {
+    req.session.destroy(() => {})
+    return res.status(401).json({ error: 'Unauthorized' })
+  }
+
+  req.user = {
+    id:        user.id,
+    username:  user.username,
+    email:     user.email,
+    role:      user.role,
+    avatarUrl: user.avatar_url || null,
+  }
+  next()
+}
+
+// Admin routes — reads Authorization: Bearer <token> header (legacy token system)
+export function authenticateBearer(req, res, next) {
   const authHeader = req.headers['authorization'] || ''
   const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
 
@@ -15,23 +37,23 @@ export function authenticate(req, res, next) {
   if (!session) return res.status(401).json({ error: 'Сессий дууссан эсвэл буруу токен' })
 
   req.user = {
-    id:       session.user_id,
-    username: session.username,
-    email:    session.email,
-    role:     session.role,
+    id:        session.user_id,
+    username:  session.username,
+    email:     session.email,
+    role:      session.role,
+    avatarUrl: session.avatar_url || null,
   }
   next()
 }
 
 export function requireAdmin(req, res, next) {
-  authenticate(req, res, () => {
+  authenticateBearer(req, res, () => {
     if (req.user.role !== 'admin')
       return res.status(403).json({ error: 'Admin access required' })
     next()
   })
 }
 
-// admin esvel row iin exen bol true butsaana
 export function canModify(row, user) {
   if (user.role === 'admin') return true
   return row.created_by === user.id
