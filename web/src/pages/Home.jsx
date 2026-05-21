@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import FeatureCard from '../components/cards/FeatureCard'
@@ -65,6 +66,12 @@ function Home() {
 
   return (
     <main>
+      <Helmet>
+        <title>TestHub — Нүүр хуудас</title>
+        <meta name="description" content="TestHub — Монгол оюутнуудад зориулсан онлайн шалгалтын бэлтгэл платформ." />
+        <meta property="og:title" content="TestHub" />
+        <meta property="og:description" content="Онлайн шалгалтын бэлтгэл платформ" />
+      </Helmet>
       {/* Hero */}
       <section className="home-hero container">
         <div className="home-hero-inner">

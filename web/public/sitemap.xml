@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://testhub.mn/#/</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://testhub.mn/#/tests</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://testhub.mn/#/competitions</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://testhub.mn/#/help</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://testhub.mn/#/login</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://testhub.mn/#/signup</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

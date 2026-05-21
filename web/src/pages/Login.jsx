@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
@@ -54,6 +55,10 @@ function Login() {
 
   return (
     <div style={{ minHeight: 'calc(100vh - 62px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
+      <Helmet>
+        <title>TestHub — Нэвтрэх</title>
+        <meta name="description" content="TestHub бүртгэлдээ нэвтрэх." />
+      </Helmet>
       <div className="brutal" style={{ width: '100%', maxWidth: 420, padding: 40 }}>
 
         {/* Гарчиг */}

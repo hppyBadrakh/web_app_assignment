@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import examData from '../data/exam_english_2025.json'
@@ -215,6 +216,10 @@ function TakeTest() {
 
   return (
     <main>
+      <Helmet>
+        <title>TestHub — Шалгалт өгч байна</title>
+        <meta name="description" content="TestHub дээр шалгалт өгч байна." />
+      </Helmet>
       <div className="taketest-wrap">
         <div className="taketest-topbar">
           <div className="container topbar-inner">

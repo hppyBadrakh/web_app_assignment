@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
 const GUIDES = [
@@ -26,6 +27,12 @@ function Help() {
 
   return (
     <main>
+      <Helmet>
+        <title>TestHub — Тусламж</title>
+        <meta name="description" content="TestHub ашиглах заавар болон түгээмэл асуулт хариулт." />
+        <meta property="og:title" content="TestHub — Тусламж" />
+        <meta property="og:description" content="Тусламж ба заавар" />
+      </Helmet>
       <section className="hero-area-center container">
         <div className="page-icon">❓</div>
         <h1>Тусламжийн төв</h1>

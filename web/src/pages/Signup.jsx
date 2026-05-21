@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
@@ -52,6 +53,10 @@ function Signup() {
 
   return (
     <div style={{ minHeight: 'calc(100vh - 62px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
+      <Helmet>
+        <title>TestHub — Бүртгүүлэх</title>
+        <meta name="description" content="TestHub-д шинэ бүртгэл үүсгэх." />
+      </Helmet>
       <div className="brutal" style={{ width: '100%', maxWidth: 420, padding: 40 }}>
 
         {/* Гарчиг */}

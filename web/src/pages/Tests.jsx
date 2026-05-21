@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ExamCard from '../components/cards/ExamCard'
@@ -69,6 +70,12 @@ function Tests() {
 
   return (
     <main>
+      <Helmet>
+        <title>TestHub — Шалгалтууд</title>
+        <meta name="description" content="Бүх шалгалтуудыг үзэж, өөрийн түвшинд тохирсон шалгалтыг сонгоорой." />
+        <meta property="og:title" content="TestHub — Шалгалтууд" />
+        <meta property="og:description" content="Онлайн шалгалтуудын жагсаалт" />
+      </Helmet>
       <div className="page-header container">
         <h1>📝 Шалгалтууд</h1>
         <p>Өөрийн хичээлийн чиглэлд тохирсон шалгалтыг сонгоорой</p>

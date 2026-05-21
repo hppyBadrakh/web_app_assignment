@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState, useRef } from 'react'
 import ProfileSidebar from '../components/layout/ProfileSidebar'
 import Modal from '../components/common/Modal'
@@ -46,6 +47,10 @@ function Profile() {
 
   return (
     <div className="container" style={{ padding: '40px 20px' }}>
+      <Helmet>
+        <title>TestHub — Профайл</title>
+        <meta name="description" content="Хувийн мэдээлэл болон статистикаа харах." />
+      </Helmet>
       <div className="profile-layout">
         <ProfileSidebar />
 

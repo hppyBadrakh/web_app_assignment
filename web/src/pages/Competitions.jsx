@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/cards/ProductCard'
@@ -73,6 +74,12 @@ function Competitions() {
 
   return (
     <main>
+      <Helmet>
+        <title>TestHub — Тэмцээнүүд</title>
+        <meta name="description" content="Оролцоод шагналтай тэмцээнүүдэд хүчээ үзээрэй." />
+        <meta property="og:title" content="TestHub — Тэмцээнүүд" />
+        <meta property="og:description" content="Шагналтай онлайн тэмцээнүүд" />
+      </Helmet>
       <div className="page-header container">
         <h1>🏆 Тэмцээн, Уралдаан</h1>
         <p>Мэдлэгээ сорьж, шилдэг нь гэдгээ батлаарай</p>

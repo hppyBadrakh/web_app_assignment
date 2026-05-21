@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 import ProfileSidebar from '../components/layout/ProfileSidebar'
 import Modal from '../components/common/Modal'
@@ -16,6 +17,10 @@ function TestHistory() {
 
   return (
     <div className="container" style={{ padding: '40px 20px' }}>
+      <Helmet>
+        <title>TestHub — Шалгалтын түүх</title>
+        <meta name="description" content="Өнгөрсөн шалгалтуудын үр дүн болон түүхийг харах." />
+      </Helmet>
       <div className="profile-layout">
         <ProfileSidebar />
 
