@@ -32,6 +32,7 @@ function Help() {
         <meta name="description" content="TestHub ашиглах заавар болон түгээмэл асуулт хариулт." />
         <meta property="og:title" content="TestHub — Тусламж" />
         <meta property="og:description" content="Тусламж ба заавар" />
+        <meta property="og:image" content="/pictures/IMG_0894.svg" />
       </Helmet>
       <section className="hero-area-center container">
         <div className="page-icon">❓</div>

@@ -71,6 +71,7 @@ function Home() {
         <meta name="description" content="TestHub — Монгол оюутнуудад зориулсан онлайн шалгалтын бэлтгэл платформ." />
         <meta property="og:title" content="TestHub" />
         <meta property="og:description" content="Онлайн шалгалтын бэлтгэл платформ" />
+        <meta property="og:image" content="/pictures/IMG_0894.svg" />
       </Helmet>
       {/* Hero */}
       <section className="home-hero container">

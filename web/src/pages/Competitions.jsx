@@ -79,6 +79,7 @@ function Competitions() {
         <meta name="description" content="Оролцоод шагналтай тэмцээнүүдэд хүчээ үзээрэй." />
         <meta property="og:title" content="TestHub — Тэмцээнүүд" />
         <meta property="og:description" content="Шагналтай онлайн тэмцээнүүд" />
+        <meta property="og:image" content="/pictures/IMG_0894.svg" />
       </Helmet>
       <div className="page-header container">
         <h1>🏆 Тэмцээн, Уралдаан</h1>

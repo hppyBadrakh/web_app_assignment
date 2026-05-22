@@ -75,6 +75,7 @@ function Tests() {
         <meta name="description" content="Бүх шалгалтуудыг үзэж, өөрийн түвшинд тохирсон шалгалтыг сонгоорой." />
         <meta property="og:title" content="TestHub — Шалгалтууд" />
         <meta property="og:description" content="Онлайн шалгалтуудын жагсаалт" />
+        <meta property="og:image" content="/pictures/IMG_0894.svg" />
       </Helmet>
       <div className="page-header container">
         <h1>📝 Шалгалтууд</h1>
