@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm ci --legacy-peer-deps && npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "echo 'skip'",
+  "framework": "vite",
+  "rootDirectory": "web",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
