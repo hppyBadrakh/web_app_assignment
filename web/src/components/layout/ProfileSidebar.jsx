@@ -21,7 +21,7 @@ function ProfileSidebar() {
           {item.label}
         </Link>
       ))}
-      <button className="profile-menu-btn logout">🚪 Гарах</button>
+      {/* <button className="profile-menu-btn logout">🚪 Гарах</button> */}
     </aside>
   )
 }
